@@ -1,0 +1,5 @@
+- sistema completo de registro.
+- sistema de escolher o corte de cabelo.
+- realizar pagamento do corte de cabelo.
+- enviar notificao para o dono do negocio falando que o usuario x escolheu corte a
+- mostrar ao usuario historico de cortes de cabelo.

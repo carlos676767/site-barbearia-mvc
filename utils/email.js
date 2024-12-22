@@ -1,7 +1,9 @@
 import emailMailer from "nodemailer";
-export default class email {
+export default class Email {
   static nodemailer = emailMailer;
   static #configEmail() {
+    console.log(process.env.EMAIL_YAHOO);
+    
     const config = this.nodemailer.createTransport({
       service: "yahoo",
       auth: {
@@ -10,21 +12,25 @@ export default class email {
       },
     });
     return config;
-  }
+  };
 
-  static async sendEmail(text, emailUser, textTittle) {
+  
+  static async sendEmail(userEmail, title, text) {
     try {
       const email = this.#configEmail();
+
       return await email.sendMail({
         from: process.env.EMAIL_YAHOO,
-        to: emailUser,
-        subject: textTittle,
+        to: userEmail,
+        subject: title,
         text: text,
       });
-    } catch (error) {
-       
 
+    } catch (error) {
+      console.log(error);
+      
       throw new Error(`error sending email`);
-    }
-  }
-}
+    };
+  };
+};
+

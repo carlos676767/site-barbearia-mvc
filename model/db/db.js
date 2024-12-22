@@ -1,24 +1,14 @@
-import { Sequelize } from "sequelize";
+import * as sqlite from "sqlite";
+import sql3 from "sqlite3";
 
-export default class Database {
-  static sequelizeConfig() {
-    const sequelize = new Sequelize({
-      dialect: "sqlite",
-      storage: `C://Users//Administrator//Desktop//site barbearia//model//db//db.js`,
-      logging: false,
+
+export default class Sql {
+  static sqlLite = sqlite;
+  static sql3 = sql3.verbose();
+  static async db() {
+    return await Sql.sqlLite.open({
+      filename: "C://Users//Administrator//Desktop//site barbearia//model//db//database.db",
+      driver: this.sql3.Database,
     });
-
-    return sequelize;
-  }
-
-  
-  static async main() {
-    try {
-      await this.sequelizeConfig().authenticate();
-      console.log("Connection has been established successfully.");
-    } catch (error) {
-      console.log(error);
-      throw new Error("Error ConnectDb");
-    }
-  }
-}
+  };
+};

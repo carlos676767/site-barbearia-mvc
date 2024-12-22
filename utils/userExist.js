@@ -1,17 +1,22 @@
-import Usuario from "../model/db/model/userModel";
+import DB from "../model/db/db.js";
 
 export default class UserExist {
   static async emailExist(email) {
     try {
-      const userExist = await Usuario.findOne({
-        where: email,
-      });
 
+      const db = await DB.db();
+
+      const userExist = await db.get(`SELECT * FROM USER WHERE EMAIL = ?`, [email]);
+
+   
       if (userExist) {
-        throw new Error("the email already exists in our database");
+        throw new Error("The email already exists in our database.");
       }
+
+      return userExist
     } catch (error) {
-        throw new Error(error); 
+      console.error("Error in emailExist:", error.message);
+      throw error; 
     }
   }
 }

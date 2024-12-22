@@ -11,11 +11,8 @@ export default class SenhaValide {
     }
 
     if (!SenhaValide.regexSenhaValide.test(senha)) {
-      throw new Error(
-        "The password must contain at least one uppercase letter, one lowercase letter, one number and one special character"
-      );
+      throw new Error(  "The password must contain at least one uppercase letter, one lowercase letter, one number and one special character" );
     }
-
-    return true;
+    
   }
 }

@@ -4,12 +4,12 @@ export default class EmailValide {
 
     if (!regex.test(email)) {
       throw new Error("Invalid email");
-    }
+    };
 
     if (!email) {
       throw new Error("please send email");
-    }
+    };
 
     return true;
-  }
-}
+  };
+};
