@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trocar Senha - Barbearia</title>
+  <link rel="stylesheet" href="style/viewResetPass.css">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="change-password-container">
+    <div class="image-section">
+      <img src="https://via.placeholder.com/100x100" alt="Barbearia" />
+      <h1>Redefina sua Senha</h1>
+      <p>Informe sua nova senha para concluir a troca.</p>
+    </div>
+    <div class="form-section">
+      <h2>Nova Senha</h2>
+      <form id="changePasswordForm">
+        <div class="input-group">
+          <label for="newPassword">Nova Senha</label>
+          <input type="password" id="newPassword" placeholder="Sua nova senha" required />
+        </div>
+        <div class="input-group">
+          <label for="confirmPassword">Confirmar Senha</label>
+          <input type="password" id="confirmPassword" placeholder="Confirme sua nova senha" required />
+        </div>
+        <button class="submit-btn" type="submit">Alterar Senha</button>
+      </form>
+      <p class="login-link">Lembrou sua senha? <a href="login.html">Faça login</a></p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
+  <script src="style/pages/script/change-password.js" type="module"></script>
+</body>
+</html>

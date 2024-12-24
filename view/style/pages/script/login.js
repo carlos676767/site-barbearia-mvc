@@ -16,7 +16,6 @@ class GetTk {
 
 class AuthSender extends GetTk {
   static async sendAuthorization() {
-
     try {
       const response = await fetch("http://localhost:8080/verifyLoginToken", {
         method: "POST",
@@ -26,9 +25,9 @@ class AuthSender extends GetTk {
         body: JSON.stringify({ token: this.getToken() }),
       });
 
-      
+
       if (response.ok) {
-        return (location.href = "./index.html");
+        // return (location.href = "./index.html");
       }
 
 

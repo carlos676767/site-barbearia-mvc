@@ -6,6 +6,7 @@ const app = api.Router()
 
 app.post(`/login`, UserController.userLogin)
 app.post(`/verifyLoginToken`, UserController.verifyTokenLogin)
+app.post(`/verifyEmailResetPass`, UserController.sendToChangePassword)
 /**
  * @swagger
  * /users/activate:

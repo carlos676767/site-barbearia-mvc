@@ -8,11 +8,11 @@ export default class UserExist {
 
       const userExist = await db.get(`SELECT * FROM USER WHERE EMAIL = ?`, [email]);
 
-      
+
       if (userExist) {
         throw new Error("The email already exists in our database.");
       }
-
+      
  
 
 

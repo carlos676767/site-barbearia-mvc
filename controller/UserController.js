@@ -41,7 +41,9 @@ export default class UserController {
 
       const tokeen = await InsertUser.insert(userCode);
 
-      return res.status(200).send({ msg: `user successfully registered`, tk: tokeen });
+      return res
+        .status(200)
+        .send({ msg: `user successfully registered`, tk: tokeen });
     } catch (error) {
       return res.status(400).send({ err: error.message });
     }
@@ -50,15 +52,14 @@ export default class UserController {
   static async verifyTokenLogin(req, res) {
     try {
       const token = req.body.token;
-      
+
       const verifyTk = await DecodJsonWebToken.decod(token);
-      
 
       if (!verifyTk) {
         throw new Error("token invalid");
       }
-      
-      res.status(200).send({loginIsTrue: true})
+
+      res.status(200).send({ loginIsTrue: true });
     } catch (error) {
       res.status(400).send({ msg: error.message });
     }
@@ -68,18 +69,42 @@ export default class UserController {
     try {
       const { email, senha } = req.body;
 
-      
-
       EmailValide.valideEmail(email);
       SenhaValide.validacoesSenha(senha);
       const token = await login.login(email, senha);
-      
+
       return res
         .status(200)
         .send({ msg: "Login realizado com sucesso.", tk: token });
     } catch (error) {
+      return res.status(400).send({ err: error.message });
+    }
+  }
+
+  static async sendToChangePassword(req, res) {
+    const { email } = req.body;
+    try {
+      EmailValide.valideEmail(email);
+
+      const emailVaideExist = await UserExist.emailExist(email);
+
+      if (!emailVaideExist) {
+        throw new Error( "The email does not exist in our database, please try another email, thank you.");
+      }
+
+    } catch (error) {
       
-      
+      if (error.message === "The email already exists in our database.") {
+        res.status(400).send({ err: true });
+        return await Email.sendEmail(
+          email,
+          "Troque sua senha",
+          `http://localhost:8080/viewResetPass.html?=${JwtAsign.jwt({
+            emailUser: email,
+          })}`
+        );
+      }
+
       return res.status(400).send({ err: error.message });
     }
   }
