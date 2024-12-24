@@ -4,25 +4,22 @@ export default async function LoginMiddleware(req, res, next) {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-       res.status(401).send({ msg: "Authorization header not provided" });
-       return next()
+      throw new Error("Authorization header not provided");
     }
 
-    const token = authHeader.split(' ')[1];
+    const token = authHeader.split(" ")[1];
     if (!token) {
-       res.status(401).send({ msg: "Token not provided" });
-       return next()
+      throw new Error("Token not provided");
     }
 
     const verifyToken = await DecodJsonWebToken.decod(token);
-    if (!verifyToken) {
-       res.status(403).send({ msg: "Invalid or expired token" });
-       return next( )
-    }
 
-    return res.status(201)
+    if (!verifyToken) {
+      throw new Error("Invalid or expired token");
+    }
     
+    next();
   } catch (error) {
-   return next()
+    res.status(400).send({msg: error.message})
   }
 }

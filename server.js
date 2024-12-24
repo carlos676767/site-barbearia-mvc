@@ -27,6 +27,7 @@ class Express {
     this.api.use(this.corsApi);
     this.api.use(expressApi.static(`image`))
     this.api.use(expressApi.static('view'))
+
     this.api.use(routerApi)
     SwaggerJsConfig.main(this.api)
     

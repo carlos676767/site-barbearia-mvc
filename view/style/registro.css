@@ -15,6 +15,7 @@
     height: 100vh;
   }
   
+  
   /* Container principal */
   .registration-container {
     display: flex;
@@ -122,3 +123,22 @@
     text-decoration: underline;
   }
   
+
+
+
+  @media (max-width: 900px) {
+    .login-container {
+        display: flex
+    }
+
+    button{
+        width: 100%;
+    }
+
+    input{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
+}

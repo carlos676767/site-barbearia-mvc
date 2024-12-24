@@ -1,51 +1,51 @@
-// import AlertService from "../../../../utils/alert.js";
-
-// AlertService.showAlert('6', 'hh', 'error')
 
 
+function Alert(title, text, icon) {
+  return Swal.fire({
+    title: title,
+    text: text,
+    icon: icon
+  });
+}
 
 class GetTk {
-    static getToken() {
-      return localStorage.getItem("token");
-    }
+  static getToken() {
+    return localStorage.getItem("token");
   }
-  
-  class AuthSender {
-    static async sendAuthorization() {
-      const token = GetTk.getToken();
-  
-      try {
-        const response = await fetch("https://seu-endpoint-api.com/authorize", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ action: "loginCheck" }),
-        });
-  
+}
 
-        if (response.ok || response.status == 201) {
-           return location.href = 'gysvfscfscdsxd'
-        }
+class AuthSender extends GetTk {
+  static async sendAuthorization() {
 
-        const getResponse = await response.json( )
-        const {msg} = getResponse
+    try {
+      const response = await fetch("http://localhost:8080/verifyLoginToken", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: this.getToken() }),
+      });
 
-        
-
-
-      } catch (error) {
-        console.error("Erro ao enviar autorização:", error.message);
+      
+      if (response.ok) {
+        return (location.href = "./index.html");
       }
+
+
+    } catch (error) {
+      console.error("Erro ao enviar autorização:", error.message);
     }
   }
-  
+}
 
-  document.addEventListener("DOMContentLoaded", () => {
-    AuthSender.sendAuthorization();
-  });
-  
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  AuthSender.sendAuthorization();
+});
+
 class ObjectsValues {
   static senha = document.getElementById("password");
   static email = document.getElementById("email");
@@ -57,35 +57,42 @@ class ObjectsValues {
   }
 }
 
+
 class Login extends ObjectsValues {
   static async sendItensLogin() {
     try {
-      const loginSend = await fetch("", {
+      const loginSend = await fetch("http://localhost:8080/login", {
         method: "POST",
-        headers: {},
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: this.objectValuesItem(),
       });
-
-      if (loginSend.ok || loginSend.status == 200) {
-        location.href = "https://www.youtube.com/watch?v=SMo_hgyQOAM&list=RDGMEMQ1dJ7wXfLlqCjwV0xfSNbA&index=3";
+      if (loginSend.ok) {
+       const data = await loginSend.json()
+       Alert(`Login com sucesso.`, `Parabens voce acaba de fazer login`, `success`)
+       localStorage.setItem(`token`, data.tk)
+       return  location.href ="./index.html";
       }
 
+      return  Alert(`Senha errada.`, `Login esta incorreto tente novamente`, `error`)
     } catch (error) {
-
+    return  Alert(`erro inesperado.`, `Tente novamente , erro.`, `error`)
     }
   }
 }
+
 
 class ButtonEventList extends Login {
   static btn = document.querySelector("button");
 
   static btnEvent() {
     this.btn.addEventListener("click", async (e) => {
-      await this.sendItensLogin();
       e.preventDefault();
+       this.sendItensLogin()
     });
   }
 }
 
-SendAutth.tokenAutorzationSend();
+
 ButtonEventList.btnEvent();

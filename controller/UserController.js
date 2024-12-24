@@ -37,27 +37,49 @@ export default class UserController {
   static async insertUser(req, res) {
     try {
       const { token } = req.body;
-
       const { userCode } = await DecodJsonWebToken.decod(token);
-     
 
-      await InsertUser.insert(userCode);
-      return res.status(200).send({ msg: `user successfully registered` });
+      const tokeen = await InsertUser.insert(userCode);
+
+      return res.status(200).send({ msg: `user successfully registered`, tk: tokeen });
     } catch (error) {
       return res.status(400).send({ err: error.message });
     }
   }
 
+  static async verifyTokenLogin(req, res) {
+    try {
+      const token = req.body.token;
+      
+      const verifyTk = await DecodJsonWebToken.decod(token);
+      
+
+      if (!verifyTk) {
+        throw new Error("token invalid");
+      }
+      
+      res.status(200).send({loginIsTrue: true})
+    } catch (error) {
+      res.status(400).send({ msg: error.message });
+    }
+  }
 
   static async userLogin(req, res) {
     try {
       const { email, senha } = req.body;
+
+      
+
       EmailValide.valideEmail(email);
       SenhaValide.validacoesSenha(senha);
-      const token =  await login.login(email, senha)
-
-      return res.status(200).send({ msg: "Login realizado com sucesso.", token });
+      const token = await login.login(email, senha);
+      
+      return res
+        .status(200)
+        .send({ msg: "Login realizado com sucesso.", tk: token });
     } catch (error) {
+      
+      
       return res.status(400).send({ err: error.message });
     }
   }

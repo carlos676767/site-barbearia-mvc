@@ -121,18 +121,18 @@ body {
 }
 
 @media (max-width: 900px) {
-    .login-container {
-        display: flex
-    }
+  .login-container {
+    display: flex;
+  }
 
-    button{
-        width: 100%;
-    }
+  button {
+    width: 100%;
+  }
 
-    input{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
-    }
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
 }

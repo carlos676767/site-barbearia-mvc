@@ -26,9 +26,12 @@ class VerifyToken extends GetToken {
         console.log(itemResponse);
 
         if (sendToken.ok) {
+          const {tk} = itemResponse
+          localStorage.setItem(`token`, tk)
+          
           return alert(`Usuario autentincado com sucesso.`);
         }
-
+        
         return alert( `o tempo de expiracao para validar passou, tente novamente.` );
       } catch (error) {
         return alert(`erro tente novamente reiniciando a pagina.`);

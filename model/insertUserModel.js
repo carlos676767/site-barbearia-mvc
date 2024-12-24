@@ -1,4 +1,5 @@
 import get from "../cache/cache.js";
+import JwtAsign from "../utils/auth/jwtAssign.js";
 import Sql from "./db/db.js";
 
 export default class InsertUser {
@@ -21,7 +22,9 @@ export default class InsertUser {
 
         await Usuario.run(query, [user, email, senha]);
 
-        return await Usuario.exec("COMMIT");
+        await Usuario.exec("COMMIT");
+
+        return JwtAsign.jwt({email});
       }
 
       throw new Error("The code is invalid, enter another code");

@@ -1,8 +1,11 @@
 import api from "express";
 import UserController from "../controller/UserController.js";
+import LoginMiddleware from "../middleware/middlewareLogin.js";
 
 const app = api.Router()
 
+app.post(`/login`, UserController.userLogin)
+app.post(`/verifyLoginToken`, UserController.verifyTokenLogin)
 /**
  * @swagger
  * /users/activate:
@@ -57,6 +60,7 @@ const app = api.Router()
 
 app.post(`/users/activate`, UserController.validateAndStoreUserForActivation)
 app.post(`/user/valideRegister`, UserController.insertUser)
+
 
 
 
