@@ -10,7 +10,7 @@ export default class login extends UserExist {
       const userGet = await connect.get(`SELECT * FROM USER WHERE EMAIL = ?`, [
         userEmail
       ])
-      console.log(userGet);
+
       
       const { SENHA, EMAIL } = userGet;
 

@@ -1,5 +1,6 @@
 import api from "express";
 import UserController from "../controller/UserController.js";
+import GetUserModel from "../model/modelGetUser.js";
 
 
 const app = api.Router()
@@ -8,6 +9,7 @@ app.post(`/login`, UserController.userLogin)
 app.post(`/verifyLoginToken`, UserController.verifyTokenLogin)
 app.post(`/verifyEmailResetPass`, UserController.sendToChangePassword)
 app.post(`/resetPass`, UserController.resetPass)
+app.get(`/getUser`, UserController.getUsers)
 
 /**
  * @swagger

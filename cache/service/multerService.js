@@ -26,6 +26,7 @@ export default class Multer {
       ".jpeg",
       ".jpg",
       ".png",
+      
     ];
 
     if (!extensionsImagesPertimidas.includes(extname)) {

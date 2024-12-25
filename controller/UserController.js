@@ -9,6 +9,7 @@ import UserExist from "../utils/userExist.js";
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import login from "../model/loginUserModel.js";
 import ModelReset from "../model/modelResetPass.js";
+import GetUserModel from "../model/modelGetUser.js";
 
 export default class UserController {
   static async validateAndStoreUserForActivation(req, res) {
@@ -94,7 +95,7 @@ export default class UserController {
       }
 
     } catch (error) {
-      
+
       if (error.message === "The email already exists in our database.") {
         res.status(400).send({ err: true });
         return await Email.sendEmail(
@@ -133,6 +134,15 @@ export default class UserController {
       res.status(200).send({passAltered: true})
     } catch (error) {
       
+      res.status(400).send({err: error.message})
+    }
+  }
+
+  static async getUsers(req, res){
+    try {
+      const gerUser = await GetUserModel.getUser()
+      return res.status(200).send({users:  gerUser})
+    } catch (error) {
       res.status(400).send({err: error.message})
     }
   }
