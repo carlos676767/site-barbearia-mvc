@@ -7,7 +7,7 @@ export default class Sql {
   static sql3 = sql3.verbose();
   static async db() {
     return await Sql.sqlLite.open({
-      filename: "C://Users//Administrator//Desktop//site barbearia//model//db//database.db",
+      filename: "C://Users//Administrator//Desktop//SITE BARBEARIA MVC//model//db//database.db",
       driver: this.sql3.Database,
     });
   };

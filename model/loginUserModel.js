@@ -17,10 +17,9 @@ export default class login extends UserExist {
 
       
       if (SENHA != pass) {
-        
         throw new Error("pass invalid");
       }
-      console.log(2);
+
       
       return JwtAsign.jwt({ EMAIL })
     } catch (error) {

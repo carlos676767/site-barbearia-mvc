@@ -8,6 +8,7 @@ import SenhaValide from "../utils/senhaValide.js";
 import UserExist from "../utils/userExist.js";
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import login from "../model/loginUserModel.js";
+import ModelReset from "../model/modelResetPass.js";
 
 export default class UserController {
   static async validateAndStoreUserForActivation(req, res) {
@@ -102,10 +103,37 @@ export default class UserController {
           `http://localhost:8080/viewResetPass.html?=${JwtAsign.jwt({
             emailUser: email,
           })}`
-        );
+        ); 
       }
 
       return res.status(400).send({ err: error.message });
+    }
+  }
+
+
+
+  static async resetPass(req, res){
+    try {
+      const {senha, confirmSenha, token} = req.body
+
+      console.log(senha, confirmSenha, token);
+      
+      SenhaValide.validacoesSenha(senha)
+      SenhaValide.validacoesSenha(confirmSenha)
+      const tokenInEmail = await DecodJsonWebToken.decod(token)
+      console.log(tokenInEmail);
+      
+
+      if (!tokenInEmail) {
+        throw new Error("The expiration time to change the password has passed, redo the request."); 
+      }
+      
+      const {emailUser} = tokenInEmail
+      await ModelReset.resetPassModel(emailUser, senha, confirmSenha)
+      res.status(200).send({passAltered: true})
+    } catch (error) {
+      
+      res.status(400).send({err: error.message})
     }
   }
 }

@@ -21,16 +21,18 @@ class Alert {
 class SendEmail extends GetEmail {
   static async send() {
     try {
-      const response = await fetch(`http://localhost:8080/verifyEmailResetPass`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: this.getEmail(),
-      });
-      
-   
-      const getReponse = await response.json()
+      const response = await fetch(
+        `http://localhost:8080/verifyEmailResetPass`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: this.getEmail(),
+        }
+      );
+
+      const getReponse = await response.json();
       if (getReponse.err === true) {
         return Alert.alert(
           `Verifique sua entrada`,
@@ -39,7 +41,7 @@ class SendEmail extends GetEmail {
         );
       }
     } catch (error) {
-        return  Alert.alert(`Error, preste atencao`, error,`error`)
+      return Alert.alert(`Error, preste atencao`, error, `error`);
     }
   }
 }

@@ -1,12 +1,14 @@
 import api from "express";
 import UserController from "../controller/UserController.js";
-import LoginMiddleware from "../middleware/middlewareLogin.js";
+
 
 const app = api.Router()
 
 app.post(`/login`, UserController.userLogin)
 app.post(`/verifyLoginToken`, UserController.verifyTokenLogin)
 app.post(`/verifyEmailResetPass`, UserController.sendToChangePassword)
+app.post(`/resetPass`, UserController.resetPass)
+
 /**
  * @swagger
  * /users/activate:
