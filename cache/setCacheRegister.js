@@ -1,5 +1,5 @@
 import set from "./cache.js";
-
+"use strict";
 
 export default class CacheSet {
   static setUser(user, email, senha, codigo) {

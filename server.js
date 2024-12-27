@@ -2,10 +2,9 @@ import expressApi from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import SwaggerJsConfig from "./docs/swaggerDocConfig.js";
-import Database from "./model/db/db.js";
 import envCobfig from "dotenv";
 import routerApi from "./routers/router.js";
-import sequelize from "./model/db/db.js";
+import middlare from "./middleware/globalMiddleError.js";
 
 envCobfig.config()
 
@@ -27,7 +26,7 @@ class Express {
     this.api.use(this.corsApi);
     this.api.use(expressApi.static(`image`))
     this.api.use(expressApi.static('view'))
-
+    this.api.use(middlare)
     this.api.use(routerApi)
     SwaggerJsConfig.main(this.api)
     

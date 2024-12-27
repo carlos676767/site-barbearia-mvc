@@ -1,15 +1,29 @@
 import api from "express";
 import UserController from "../controller/UserController.js";
 import GetUserModel from "../model/modelGetUser.js";
+import Cortes from "../controller/cabelosController.js";
+import Multer from "../cache/service/multerService.js";
 
+const app = api.Router();
 
-const app = api.Router()
+app.post(`/login`, UserController.userLogin);
+app.post(`/verifyLoginToken`, UserController.verifyTokenLogin);
+app.post(`/verifyEmailResetPass`, UserController.sendToChangePassword);
+app.post(`/resetPass`, UserController.resetPass);
+app.get(`/getUser`, UserController.getUsers);
+app.post(`/users/activate`, UserController.validateAndStoreUserForActivation);
+app.post(`/user/valideRegister`, UserController.insertUser);
 
-app.post(`/login`, UserController.userLogin)
-app.post(`/verifyLoginToken`, UserController.verifyTokenLogin)
-app.post(`/verifyEmailResetPass`, UserController.sendToChangePassword)
-app.post(`/resetPass`, UserController.resetPass)
-app.get(`/getUser`, UserController.getUsers)
+const single = Multer.multerConfig().single(`file`);
+
+app.post(`/insertCortes`,(req, res, next) => {
+    single(req, res, (err) => {
+      return err ? next(err.message) : next();
+    });
+  },
+  
+  Cortes.insertCabelos
+);
 
 /**
  * @swagger
@@ -60,12 +74,6 @@ app.get(`/getUser`, UserController.getUsers)
  *                   type: string
  *                   example: "O e-mail já está em uso."
  */
-
-
-
-app.post(`/users/activate`, UserController.validateAndStoreUserForActivation)
-app.post(`/user/valideRegister`, UserController.insertUser)
-
 
 
 

@@ -7,7 +7,7 @@ export default class Multer {
   static multerConfig() {
     const storage = this.#multer.diskStorage({
       destination: (req, file, callback) => {
-        const uploadPath = 'C://Users\Administrator//Desktop//site barbearia//image';
+        const uploadPath = 'C://Users//Administrator//Desktop//SITE BARBEARIA MVC//image';
         callback(null, uploadPath);
       },
 
@@ -36,7 +36,7 @@ export default class Multer {
     const sizeLimit = 50 * 1024 * 1024;
 
     if (file.size > sizeLimit) {
-      callback(new Error(`File size exceeds the 50MB limit`));
+    return  callback(new Error(`File size exceeds the 50MB limit`));
     };
 
     callback(null, true);

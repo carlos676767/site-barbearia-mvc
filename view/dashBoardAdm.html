@@ -1,149 +1,190 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Barbearia - Sistema de Agendamentos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome para ícones -->
-    <link rel="stylesheet" href="style/dashBoard.css">
-</head>
-<body>
-
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="style/dashBoard.css" />
+  </head>
+  <body>
     <!-- Sidebar -->
     <div class="sidebar">
-        <h4 class="text-white">Barbearia</h4>
-        <a href="#cabelos"><i class="fas fa-cut"></i> Cadastro de Cabelos</a>
-        <a href="#usuarios"><i class="fas fa-users"></i> Usuários</a>
-        <a href="#agendamentos"><i class="fas fa-calendar-check"></i> Agendamentos</a>
+      <h4 class="text-white">Barbearia</h4>
+      <a href="#cabelos"><i class="fas fa-cut"></i> Cadastro de Cabelos</a>
+      <a href="#usuarios"><i class="fas fa-users"></i> Usuários</a>
+      <a href="#agendamentos"
+        ><i class="fas fa-calendar-check"></i> Agendamentos</a
+      >
     </div>
 
     <!-- Main content -->
     <div class="main-content">
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Barbearia</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#cabelos">Cadastro de Cabelos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#usuarios">Usuários</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#agendamentos">Agendamentos</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Content -->
-        <div class="container">
-
-            <!-- Cadastro de Cabelos -->
-            <section id="cabelos" class="card mb-4">
-                <div class="card-header">
-                    Cadastro de Cabelos
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="nomeCorte" class="form-label">Nome do Estilo</label>
-                            <input type="text" class="form-control" id="nomeCorte" placeholder="Ex: Corte Fade" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descricao" class="form-label">Preco corte</label>
-                            <textarea class="form-control" id="descricao" rows="3" placeholder="Descreva o estilo" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="imagem" class="form-label">Imagem</label>
-                            <input type="file" class="form-control" id="imagem" required>
-                        </div>
-                        <button type="submit" class="btn btn-custom">Cadastrar</button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Usuários Cadastrados -->
-            <section id="usuarios" class="card mb-4">
-                <div class="card-header">
-                    Usuários Cadastrados
-                </div>
-                <div class="card-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Email</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>João Silva</td>
-                                <td>joao@email.com</td>
-                               
-                                <td>
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Excluir</button>
-                                </td>
-                            </tr>
-                            <!-- Mais registros aqui -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Agendamentos -->
-            <section id="agendamentos" class="card mb-4">
-                <div class="card-header">
-                    Agendamentos
-                </div>
-                <div class="card-body">
-                    <!-- Campo de busca -->
-                    <div class="mb-3">
-                        <label for="searchAgendamento" class="form-label">Buscar Agendamento</label>
-                        <input type="text" class="form-control" id="searchAgendamento" placeholder="Pesquise por cliente, data ou serviço">
-                    </div>
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Cliente</th>
-                                <th>Data</th>
-                                <th>Serviço</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Maria Oliveira</td>
-                                <td>2024-12-26</td>
-                                <td>Corte Degradê</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</button>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-times"></i> Cancelar</button>
-                                </td>
-                            </tr>
-                           <!-- Mais registros aqui -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Barbearia</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#cabelos">Cadastro de Cabelos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#usuarios">Usuários</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#agendamentos">Agendamentos</a>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
+
+      <!-- Content -->
+      <div class="container">
+        <!-- Cadastro de Cabelos -->
+        <section id="cabelos" class="card mb-4">
+          <div class="card-header">Cadastro de Cabelos</div>
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="nomeCorte" class="form-label">Nome do Estilo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nomeCorte"
+                  placeholder="Ex: Corte Fade"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="descricao" class="form-label">Preco corte</label>
+                <input
+                  class="form-control"
+                  id="descricao"
+                  rows="3"
+                  placeholder="Descreva o preco"
+                  required
+                ></input>
+              </div>
+              <div class="mb-3">
+                <label for="imagem" class="form-label">Imagem</label>
+                <input type="file" class="form-control" id="imagem" required />
+              </div>
+              <button type="submit" class="btn btn-custom" id="btnId">Cadastrar</button>
+            </form>
+          </div>
+        </section>
+        
+        <!-- Usuários Cadastrados -->
+        <section id="usuarios" class="card mb-4">
+          <div class="card-header">Usuários Cadastrados</div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>João Silva</td>
+                  <td>joao@email.com</td>
+
+                  <td>
+                    <button class="btn btn-warning btn-sm">
+                      <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash-alt"></i> Excluir
+                    </button>
+                  </td>
+                </tr>
+                <!-- Mais registros aqui -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Agendamentos -->
+        <section id="agendamentos" class="card mb-4">
+          <div class="card-header">Agendamentos</div>
+          <div class="card-body">
+            <!-- Campo de busca -->
+            <div class="mb-3">
+              <label for="searchAgendamento" class="form-label"
+                >Buscar Agendamento</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="searchAgendamento"
+                placeholder="Pesquise por cliente, data ou serviço"
+              />
+            </div>
+
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Cliente</th>
+                  <th>Data</th>
+                  <th>Serviço</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Maria Oliveira</td>
+                  <td>2024-12-26</td>
+                  <td>Corte Degradê</td>
+                  <td>
+                    <button class="btn btn-warning btn-sm">
+                      <i class="fas fa-edit"></i> Editar
+                    </button>
+                    <button class="btn btn-danger btn-sm">
+                      <i class="fas fa-times"></i> Cancelar
+                    </button>
+                  </td>
+                </tr>
+                <!-- Mais registros aqui -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </div>
     <script type="module" src="style/pages/script/dashBoardAdm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js
+    "></script>
+  </body>
 </html>
