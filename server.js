@@ -5,6 +5,7 @@ import SwaggerJsConfig from "./docs/swaggerDocConfig.js";
 import envCobfig from "dotenv";
 import routerApi from "./routers/router.js";
 import middlare from "./middleware/globalMiddleError.js";
+import fs from "fs/promises";
 
 envCobfig.config()
 
@@ -19,6 +20,7 @@ class Express {
 
       console.log(`server running on the port ${port}`);
     });
+
   }
 
   static async main() {
@@ -31,6 +33,8 @@ class Express {
     SwaggerJsConfig.main(this.api)
     
     this.configExpress();
+   
+    
   }
 }
 

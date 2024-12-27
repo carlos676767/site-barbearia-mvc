@@ -1,3 +1,4 @@
+import DeleteAllCortes from "../model/deleteAllCortesModel.js";
 import GetCortesModel from "../model/getCortesModel.js";
 import InsertCabeloModel from "../model/modelInsertCabelo.js";
 
@@ -8,7 +9,10 @@ export default class Cortes {
       const { nome, preco } = req.body;
       
       const img = req.file.filename
-     
+
+      if (!nome || !preco || ! img) {
+        throw new Error("inform the values");
+      }
       
       await InsertCabeloModel.insertCabelo(nome, preco, img);
       return res.status(200).send({msg: `caelo successfully registered.`})
@@ -27,8 +31,17 @@ export default class Cortes {
     }
   }
 
-  static async updateCortes(req,res){
 
+  static async deleteAllCortes(req, res){
+    try {
+      await DeleteAllCortes.delete()
+      return res.status(200).send({cortesDelete: true})
+    } catch (error) {
+      return res.status(400).send({err: error.message})
+    }
+  }
+  static async updateCortes(req,res){
+    
   }
 
   static async deleteCortes(req, res){

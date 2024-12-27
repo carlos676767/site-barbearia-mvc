@@ -95,14 +95,36 @@
               </div>
               <button type="submit" class="btn btn-custom" id="btnId">Cadastrar</button>
             </form>
+
+            
+            <!-- Lista de cabelos cadastrados -->
+            <div class="mt-4">
+              <h5>Cabelos Cadastrados</h5>
+              <table class="table table-striped" class="tabelaCabelos" id="tabelaCabelos">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Imagem</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+              </table>
+              
+              <button type="button" class="btn btn-danger" id="deleteAll">Delete all cortes</button>
+    
           </div>
+          
         </section>
-        
+
         <!-- Usuários Cadastrados -->
         <section id="usuarios" class="card mb-4">
           <div class="card-header">Usuários Cadastrados</div>
           <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped" id="users">
               <thead>
                 <tr>
                   <th>#</th>
@@ -179,6 +201,9 @@
             </table>
           </div>
         </section>
+
+      
+     
       </div>
     </div>
     <script type="module" src="style/pages/script/dashBoardAdm.js"></script>

@@ -13,6 +13,8 @@ app.post(`/resetPass`, UserController.resetPass);
 app.get(`/getUser`, UserController.getUsers);
 app.post(`/users/activate`, UserController.validateAndStoreUserForActivation);
 app.post(`/user/valideRegister`, UserController.insertUser);
+app.get(`/getCabelos`, Cortes.getAllCortes)
+app.delete(`/deleteCabelos`, Cortes.deleteAllCortes)
 
 const single = Multer.multerConfig().single(`file`);
 
@@ -24,6 +26,7 @@ app.post(`/insertCortes`,(req, res, next) => {
   
   Cortes.insertCabelos
 );
+
 
 /**
  * @swagger

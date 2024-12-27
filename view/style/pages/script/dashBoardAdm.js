@@ -1,8 +1,7 @@
 class RemoveItwem {
-  static table = document.querySelector(`table`);
-
-  static removeItem() {
-    this.table.remove();
+  static removeItem(value) {
+    const table = document.querySelector(value);
+    return table.remove();
   }
 }
 
@@ -14,13 +13,13 @@ class GetUser extends RemoveItwem {
         return await getUser.json();
       }
     } catch (error) {
-      return this.removeItem();
+      return this.removeItem(`table`);
     }
   }
 }
 
 class ShowUsers extends GetUser {
-  static tbody = document.querySelector(`tbody`);
+  static tbody = document.getElementById(`users`);
 
   static async showUsers() {
     const getUser = await this.getUserDatabase();
@@ -41,10 +40,6 @@ class ShowUsers extends GetUser {
   }
 }
 
-addEventListener(`DOMContentLoaded`, async () => {
-  await ShowUsers.showUsers();
-});
-
 class Alert {
   static alert(title, text, icon) {
     return Swal.fire({
@@ -58,7 +53,7 @@ class Alert {
 class GetInputs {
   static nomeCorte = document.getElementById(`nomeCorte`);
   static preco = document.getElementById(`descricao`);
-  static imagem = document.getElementById(`imagem`)
+  static imagem = document.getElementById(`imagem`);
 
   static getInputs() {
     const formData = new FormData();
@@ -76,11 +71,18 @@ class GetInputs {
       });
 
       if (response.ok || response.status == 200) {
-        return Alert.alert(`Cabelos cadastrado com sucesso...`, `o cabelo foi cadatsrado com sucesso.`, `success`)
+        return Alert.alert(
+          `Cabelos cadastrado com sucesso...`,
+          `o cabelo foi cadatsrado com sucesso.`,
+          `success`
+        );
       }
-
     } catch (error) {
-      return  Alert.alert(`Erro ao cadastrar cabelo...`, `tente novamente cadastrar o cabelo.`, `error`)
+      return Alert.alert(
+        `Erro ao cadastrar cabelo...`,
+        `tente novamente cadastrar o cabelo.`,
+        `error`
+      );
     }
   }
 }
@@ -97,3 +99,72 @@ class ButtonEvent extends GetInputs {
 }
 
 ButtonEvent.btnEventList();
+
+class GetCabelos {
+  static async getCaelos() {
+    try {
+      const getCaelos = await fetch(`http://localhost:8080/getCabelos`);
+
+      if (getCaelos.ok) {
+        return await getCaelos.json();
+      }
+    } catch (error) {
+      RemoveItwem.removeItem(`.tabelaCabelos`);
+    }
+  }
+}
+
+class ViewCabelos extends GetCabelos {
+  static tabelaCabelos = document.getElementById(`tabelaCabelos`);
+
+  static async viewCabelos() {
+    const getCabelos = await this.getCaelos();
+
+    if (getCabelos != undefined) {
+      getCabelos.cortes.forEach((char) => {
+        const { cabelo, preco, url, id } = char;
+
+        this.tabelaCabelos.innerHTML += `  <td>${cabelo}</td>
+          <td>${preco}</td>
+          <td><img src="http://localhost:8080/${url}" alt="${url}" width="50"></td>
+          <td>
+            <button class="btn btn-warning btn-sm btnEditar" data-id="${id}">Editar</button>
+            <button class="btn btn-danger btn-sm btnDeletar" data-id="${id}">Excluir</button>
+          </td>`;
+      });
+    }
+  }
+}
+
+addEventListener(`DOMContentLoaded`, async () => {
+  await ShowUsers.showUsers();
+  await ViewCabelos.viewCabelos();
+});
+
+class DeleteAllCortes extends Alert {
+  static btn = document.getElementById(`deleteAll`);
+
+  static btnDeleteEvent() {
+    this.btn.addEventListener(`click`, async () => {
+      const deleteItem = await fetch(`http://localhost:8080/deleteCabelos`, {
+        method: `delete`,
+      });
+
+      if (deleteItem.ok || deleteItem.status === 200) {
+        return Alert.alert(
+          `Cabelos Deletado com sucesso...`,
+          `os cabelos foi deletado com sucesso.`,
+          `success`
+        );
+      }
+      return Alert.alert(
+        `Erro ao deletar cabelos...`,
+        `tente novamente deletar os cabelos.`,
+        `error`
+      );
+
+    });
+  }
+}
+
+DeleteAllCortes.btnDeleteEvent();
