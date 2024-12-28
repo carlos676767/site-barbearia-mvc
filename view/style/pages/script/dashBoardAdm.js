@@ -77,6 +77,11 @@ class GetInputs {
           `success`
         );
       }
+      return Alert.alert(
+        `Erro ao cadastrar cabelo...`,
+        `tente novamente cadastrar o cabelo.`,
+        `error`
+      );
     } catch (error) {
       return Alert.alert(
         `Erro ao cadastrar cabelo...`,

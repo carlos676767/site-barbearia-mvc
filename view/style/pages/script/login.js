@@ -27,7 +27,7 @@ class AuthSender extends GetTk {
 
 
       if (response.ok) {
-        // return (location.href = "./index.html");
+        return (location.href = "./agemdamento.html");
       }
 
 
@@ -71,7 +71,7 @@ class Login extends ObjectsValues {
        const data = await loginSend.json()
        Alert(`Login com sucesso.`, `Parabens voce acaba de fazer login`, `success`)
        localStorage.setItem(`token`, data.tk)
-       return  location.href ="./index.html";
+       return  location.href ="./agemdamento.html";
       }
 
       return  Alert(`Senha errada.`, `Login esta incorreto tente novamente`, `error`)

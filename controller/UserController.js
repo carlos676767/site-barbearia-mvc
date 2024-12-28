@@ -12,6 +12,7 @@ import ModelReset from "../model/modelResetPass.js";
 import GetUserModel from "../model/modelGetUser.js";
 
 export default class UserController {
+"use strict"; 
   static async validateAndStoreUserForActivation(req, res) {
     try {
       const { user, email, senha } = req.body;

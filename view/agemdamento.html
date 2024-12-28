@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbearia Supreme - Agendamento</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style/agendamento.css">
+
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Barbearia Supreme</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#services"><i class="fa-solid fa-concierge-bell"></i> Serviços</a></li>
+          <li class="nav-item"><a class="nav-link" href="historicoPgamento.html"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact"><i class="fa-solid fa-envelope"></i> Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container">
+      <h1>Transforme Seu Estilo</h1>
+      <p class="confianca">Confiança, qualidade e tradição em cada corte de cabelo.</p>
+      <a href="#services" class="btn btn-lg shadow">Descubra Nossos Serviços</a>
+    </div>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Escolha Seu Serviço</h2>
+      <div class="row g-4 justify-content-center">
+        <!-- Corte Clássico -->
+        <div class="col-md-4">
+          <div class="card service-card shadow">
+            <img src="https://via.placeholder.com/500x300?text=Corte+Cl%C3%A1ssico" class="card-img-top" alt="Corte Clássico">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fa-solid fa-user-scissors"></i> Corte Clássico</h5>
+              <p class="card-text">O tradicional corte de cabelo para um visual impecável.</p>
+              <p class="price">R$ 50,00</p>
+             
+            </div>
+          </div>
+        </div>
+        <!-- Barba e Bigode -->
+        <div class="col-md-4">
+          <div class="card service-card shadow">
+            <img src="https://via.placeholder.com/500x300?text=Barba+e+Bigode" class="card-img-top" alt="Barba e Bigode">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fa-solid fa-beard"></i> Barba e Bigode</h5>
+              <p class="card-text">Estilo e sofisticação para sua barba.</p>
+              <p class="price">R$ 40,00</p>
+              
+            </div>
+          </div>
+        </div>
+        <!-- Corte Moderno -->
+        <div class="col-md-4">
+          <div class="card service-card shadow">
+            <img src="https://via.placeholder.com/500x300?text=Corte+Moderno" class="card-img-top" alt="Corte Moderno">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fa-solid fa-user-hair"></i> Corte Moderno</h5>
+              <p class="card-text">Visual inovador para acompanhar as tendências.</p>
+              <p class="price">R$ 70,00</p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato Section -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Agende Seu Atendimento</h2>
+      <form id="booking-form" class="row g-4 justify-content-center">
+        <div class="col-md-6">
+          <label for="date" class="form-label">Data</label>
+          <input type="date" class="form-control" id="date" required>
+        </div>
+        <div class="col-md-6">
+          <label for="service" class="form-label">Serviço</label>
+          <select id="service" class="form-select" required>
+            <option selected disabled>Escolha um serviço</option>
+            <option value="Corte Clássico">Corte Clássico</option>
+            <option value="Barba e Bigode">Barba e Bigode</option>
+            <option value="Corte Moderno">Corte Moderno</option>
+          </select>
+        </div>
+        <div class="col-md-6 text-center">
+          <button type="submit" class="btn btn-primary btn-lg shadow">Agendar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Encontre-nos</h2>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345085257!2d-122.40138278468141!3d37.78583497975826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f14707b3%3A0xa4c116f3e731f815!2sBarber%20Shop!5e0!3m2!1sen!2sus!4v1689847619324"
+          width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="mb-0">&copy; 2024 Barbearia Supreme. Todos os direitos reservados.</p>
+  </footer>
+  <script src="style/pages/script/agendamento.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="
+  https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js
+  "></script>
+</body>
+</html>

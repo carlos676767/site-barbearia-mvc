@@ -4,7 +4,7 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   background: #f9f9f9;
   color: #333;
   display: flex;
@@ -24,10 +24,10 @@ body {
   overflow: hidden;
 }
 
-/* Seção da imagem */
+/* Seção de Imagem */
 .image-section {
   flex: 1;
-  background: #333;
+  background: #003b5c;
   color: #fff;
   text-align: center;
   display: flex;
@@ -53,7 +53,7 @@ body {
   line-height: 1.5;
 }
 
-/* Seção do formulário */
+/* Seção de Formulário */
 .form-section {
   flex: 1;
   padding: 40px 20px;
@@ -85,12 +85,12 @@ body {
 }
 
 .input-group input:focus {
-  border: 1px solid #333;
+  border: 1px solid #003b5c;
   outline: none;
 }
 
 .submit-btn {
-  background: #333;
+  background: #003b5c;
   color: #fff;
   border: none;
   padding: 12px 20px;
@@ -101,7 +101,7 @@ body {
 }
 
 .submit-btn:hover {
-  background: #555;
+  background: #002a3a;
 }
 
 .register-link {
@@ -111,7 +111,7 @@ body {
 }
 
 .register-link a {
-  color: #333;
+  color: #003b5c;
   text-decoration: none;
   font-weight: 500;
 }
@@ -135,4 +135,9 @@ body {
     align-items: center;
     width: 50%;
   }
+}
+
+img{
+  width: 200px;
+  height: 200px;
 }

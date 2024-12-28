@@ -15,6 +15,7 @@ export default class DeleteAllCortes {
         for (const i of files) {
           DeleteItem.deleteItem( `C://Users//Administrator//Desktop//SITE BARBEARIA MVC//image/${i}` );
         }
+        return true
       }
 
       throw new Error("There are no cuts in our database");
