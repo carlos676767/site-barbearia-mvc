@@ -23,7 +23,7 @@ class VerifyToken extends GetToken {
         );
 
         const itemResponse = await sendToken.json();
-        console.log(itemResponse);
+
 
         if (sendToken.ok) {
           const {tk} = itemResponse

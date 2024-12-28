@@ -13,9 +13,7 @@ export default class UserExist {
         throw new Error("The email already exists in our database.");
       }
       
- 
-
-
+      
     } catch (error) {
       console.error("Error in emailExist:", error.message);
       throw error; 

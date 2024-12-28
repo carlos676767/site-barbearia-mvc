@@ -96,17 +96,37 @@
           <label for="service" class="form-label">Serviço</label>
           <select id="service" class="form-select" required>
             <option selected disabled>Escolha um serviço</option>
-            <option value="Corte Clássico">Corte Clássico</option>
-            <option value="Barba e Bigode">Barba e Bigode</option>
-            <option value="Corte Moderno">Corte Moderno</option>
+            <option value="" >Corte Clássico</option>
+          
           </select>
         </div>
+  
+        <!-- Opções de pagamento -->
+        <div class="col-md-6">
+          <label class="form-label">Forma de Pagamento</label>
+          <div class="d-flex justify-content-between">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="payment" id="pix" value="Pix" required>
+              <label class="form-check-label" for="pix">
+                <i class="fa-solid fa-qrcode"></i> Pix
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="payment" id="card" value="Cartão" required>
+              <label class="form-check-label" for="card">
+                <i class="fa-solid fa-credit-card"></i> Cartão
+              </label>
+            </div>
+          </div>
+        </div>
+  
         <div class="col-md-6 text-center">
-          <button type="submit" class="btn btn-primary btn-lg shadow">Agendar</button>
+          <button type="submit" class="btn btn-primary btn-lg shadow" id="agendar">Agendar</button>
         </div>
       </form>
     </div>
   </section>
+  
 
   <!-- Map Section -->
   <section class="py-5">

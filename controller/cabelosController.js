@@ -13,7 +13,10 @@ export default class Cortes {
       if (!nome || !preco || ! img) {
         throw new Error("inform the values");
       }
-      
+
+      if (preco <= 0) {
+        throw new Error("the price is a negative value, enter a positive value");
+      }
       await InsertCabeloModel.insertCabelo(nome, preco, img);
       return res.status(200).send({msg: `caelo successfully registered.`})
     } catch (error) {
