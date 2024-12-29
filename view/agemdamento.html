@@ -93,12 +93,18 @@
           <input type="date" class="form-control" id="date" required>
         </div>
         <div class="col-md-6">
+          <label for="date" class="form-label">Horario</label>
+          <input type="time" class="form-control" id="time" required min="09:00" max="19:00">
+
+        </div>
+        <div class="col-md-6">
           <label for="service" class="form-label">Serviço</label>
           <select id="service" class="form-select" required>
             <option selected disabled>Escolha um serviço</option>
             <option value="" >Corte Clássico</option>
           
           </select>
+          
         </div>
   
         <!-- Opções de pagamento -->
@@ -121,7 +127,7 @@
         </div>
   
         <div class="col-md-6 text-center">
-          <button type="submit" class="btn btn-primary btn-lg shadow" id="agendar">Agendar</button>
+          <button class="btn btn-primary btn-lg shadow" id="agendar">Agendar</button>
         </div>
       </form>
     </div>

@@ -1,6 +1,6 @@
-- sistema completo de registro.
-- sistema de escolher o corte de cabelo.
-- realizar pagamento do corte de cabelo.
+- sistema completo de registro[x]
+- sistema de escolher o corte de cabelo[x]
+- realizar pagamento do corte de cabelo
 - enviar notificao para o dono do negocio falando que o usuario x escolheu corte a
 - mostrar ao usuario historico de cortes de cabelo.
 - salvar o email do usuario para quando for fazer o relacionamento

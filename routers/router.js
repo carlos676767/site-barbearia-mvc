@@ -3,6 +3,7 @@ import UserController from "../controller/UserController.js";
 import GetUserModel from "../model/modelGetUser.js";
 import Cortes from "../controller/cabelosController.js";
 import Multer from "../cache/service/multerService.js";
+import Payments from "../controller/pagamentosController.js";
 
 const app = api.Router();
 
@@ -15,7 +16,7 @@ app.post(`/users/activate`, UserController.validateAndStoreUserForActivation);
 app.post(`/user/valideRegister`, UserController.insertUser);
 app.get(`/getCabelos`, Cortes.getAllCortes)
 app.delete(`/deleteCabelos`, Cortes.deleteAllCortes)
-
+app.post(`/pagamentos`, Payments.routerPayMent)
 const single = Multer.multerConfig().single(`file`);
 
 app.post(`/insertCortes`,(req, res, next) => {

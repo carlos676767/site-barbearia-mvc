@@ -32,7 +32,8 @@ import stripe from "stripe"
 
       const { url } = await StripeApi.#stripeApi.checkout.sessions.create({
         payment_method_types: ["card"],
-        line_items: [this.#informacoesPagamento(valor, itens)],
+        line_items: [this.#informacoesPagamento(valor, 
+          itens)],
         ...this.configsRedirecionamentoEpagamneto(),
       });
 
