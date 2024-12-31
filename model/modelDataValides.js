@@ -5,8 +5,10 @@ export default class ModelDataValides {
     const db = await Sql.db();
     try {
       const [hours, minutes] = hour.split(":").map(Number);
+      
       const min = 9
       const max = 19
+
       if (hours < min || hours > max || (hours === max && minutes > 0)) {
         throw new Error("Please select a time between 09:00 and 19:00.");
       }

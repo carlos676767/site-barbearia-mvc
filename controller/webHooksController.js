@@ -1,14 +1,21 @@
+import cache from "../cache/cache.js"
+import ModelHistoric from "../model/modelHistoric.js"
+
 export default class WebHook {
 
+    static async weHookStripe(req, res){
+        const notificationPay = req.body.type
 
-
-
-
-
-    static weHookStripe(req, res){
-
+        if (notificationPay === `charge.succeeded`) {
+            const {email, IDCABELO, DATERESERVA, HORA} = cache.get(`objectTranstion`)
+            await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA)
+            return res.status(201)
+        }
+        
     }
+    
     static webHookMercadoPago(req, res){
 
     }
 }
+

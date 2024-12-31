@@ -1,3 +1,4 @@
+
 import SetCache from "../cache/setCache.js";
 import ModelDataValides from "../model/modelDataValides.js";
 import GetCabeloUser from "../model/modelGetCabelo.js";
@@ -9,15 +10,16 @@ export default class Payments {
   static async routerPayMent(req, res) {
     try {
       const { cabelo, pagamentoForma, dataServico, usuarioToken, hour } = req.body;
-
+      
       ValidateFields.validateFields(req.body);
       await ModelDataValides.modelDataValides(dataServico, hour);
 
-      const { email } = await DecodJsonWebToken.decod(usuarioToken);
-
+      const {EMAIL} = await DecodJsonWebToken.decod(usuarioToken);
+      
       const getCbaleo = await GetCabeloUser.getCabelo(cabelo);
-
+      
       const { PRECO, NOME_IMAGE, ID } = getCbaleo;
+      
 
       const urlCodeStripe = await Payments.optionsPayMent(
         Number(PRECO),
@@ -25,15 +27,15 @@ export default class Payments {
         NOME_IMAGE
       );
 
-
       const objectUser = {
-        email: email,
+        email: EMAIL,
         IDCABELO: ID,
-        DATERESERVA: dataServico
-      }
+        DATERESERVA: dataServico,
+        HORA: hour
+      };
 
-      SetCache.setCache(`objectTranstion`, objectUser)
-      
+      SetCache.setCache(`objectTranstion`, objectUser);
+
       if (urlCodeStripe) {
         return res.status(200).send({ url: urlCodeStripe });
       }

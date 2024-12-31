@@ -8,6 +8,7 @@ export default class DecodJsonWebToken {
           return reject(  new Error(  "the expiration time has passed, try again, you have a time of 1 hour"  ));
         }
 
+        
         return ok(sucess);
       });
     });

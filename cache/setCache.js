@@ -1,8 +1,7 @@
 import Cache from "./cache.js";
 
 export default class SetCache {
-  static setCache(values, key) {
-    const objectValues = {...values}
-    return Cache.set(key, objectValues)
+  static setCache(key, values) {
+    return Cache.set(key, values)
   }
 }
