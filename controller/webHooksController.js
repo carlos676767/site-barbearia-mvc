@@ -13,6 +13,7 @@ export default class WebHook {
         }
         
     }
+
     
     static webHookMercadoPago(req, res){
 
