@@ -16,7 +16,7 @@ JOIN
     ON AGENDAMENTOS.IDUSER = USER.ID
 JOIN 
     CABELOS 
-    ON CABELOS.ID = AGENDAMENTOS.ID_CABELO;
+    ON CABELOS.ID = AGENDAMENTOS.ID_CABELO
 `;
       const getHistory = await db.all(query);
 

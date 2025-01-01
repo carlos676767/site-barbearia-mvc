@@ -7,7 +7,10 @@ export default class WebHook {
         const notificationPay = req.body.type
 
         if (notificationPay === `charge.succeeded`) {
-            const {email, IDCABELO, DATERESERVA, HORA} = cache.get(`objectTranstion`)
+           
+            const data = cache.get(`objectTranstion`)
+            const {email, IDCABELO, DATERESERVA, HORA} = data
+            
             await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA)
             return res.status(201)
         }
