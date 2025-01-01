@@ -5,6 +5,7 @@ import GetCabeloUser from "../model/modelGetCabelo.js";
 import StripeApi from "../pagamentos/stripeApi.js";
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import ValidateFields from "../utils/ValidateFields.js";
+import ValideHoursService from "../utils/ValideHoursService.js";
 
 export default class Payments {
   static async routerPayMent(req, res) {
@@ -12,6 +13,7 @@ export default class Payments {
       const { cabelo, pagamentoForma, dataServico, usuarioToken, hour } = req.body;
       
       ValidateFields.validateFields(req.body);
+      ValideHoursService.valideHoursService(dataServico, hour)
       await ModelDataValides.modelDataValides(dataServico, hour);
 
       const {EMAIL} = await DecodJsonWebToken.decod(usuarioToken);
