@@ -24,7 +24,7 @@ class AuthSender extends GetTk {
         },
         body: JSON.stringify({ token: this.getToken() }),
       });
-
+      
 
       if (response.ok) {
         return (location.href = "./agemdamento.html");

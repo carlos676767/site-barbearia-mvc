@@ -13,13 +13,10 @@ export default class login extends UserExist {
 
       
       const { SENHA, EMAIL } = userGet;
-
-
       
       if (SENHA != pass) {
         throw new Error("pass invalid");
       }
-
       
       return JwtAsign.jwt({ EMAIL })
     } catch (error) {

@@ -1,0 +1,93 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #4caf50, #2196f3);
+  }
+
+
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+  }
+
+  .success, .failure {
+    display: none;
+  }
+
+  .success.visible, .failure.visible {
+    display: block;
+  }
+
+  .success-icon, .failure-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+
+  .success-icon {
+    color: #4caf50;
+  }
+
+  .failure-icon {
+    color: #f44336;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: 0.3s ease;
+    border: 0.5px solid black;
+  }
+
+  .btn-home {
+    background-color: #4caf50;
+  }
+
+  .btn-home:hover {
+    background-color: #388e3c;
+  }
+
+  .btn-try-again {
+    background-color: #f44336;
+  }
+
+  .btn-try-again:hover {
+    background-color: #d32f2f;
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+  }

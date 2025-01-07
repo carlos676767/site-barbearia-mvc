@@ -1,22 +1,26 @@
-
-
-import { MercadoPagoConfig, Payment } from 'mercadopago';
- export default class MercadoPagoPixController {
+import { MercadoPagoConfig, Payment } from "mercadopago";
+export default class MercadoPagoPixController {
   "use strict";
-  static payment() {      
+  static payment() {
     const client = new MercadoPagoConfig({
       accessToken: process.env.SECRET_KEY_MERCADO_PAGO,
       timeout: 5000,
     });
-    
+
     return new Payment(client);
   }
 
   static objectWithPaymentInformation(valorItem, nameItens) {
-    if (!valorItem || typeof valorItem !== "number" || valorItem <= 0) {
+    const numberNgetaive = 0;
+
+    if (
+      !valorItem ||
+      typeof valorItem !== "number" ||
+      valorItem <= numberNgetaive
+    ) {
       throw new Error("O valor do item (transaction_amount) é inválido.");
     }
-     
+
     return {
       transaction_amount: valorItem,
       description: `${nameItens}`,
@@ -26,16 +30,19 @@ import { MercadoPagoConfig, Payment } from 'mercadopago';
       },
     };
   }
-  
-  static async generatePayMent(valorItem, nameItens){
+
+  static async generatePayMent(valorItem, nameItens) {
     try {
-      const body = this.objectWithPaymentInformation((valorItem), nameItens)
-      
-      const pay = await MercadoPagoPixController.payment().create(body)
+      const body = this.objectWithPaymentInformation(valorItem, nameItens);
 
-      const  {ticket_url,   qr_code_base64} = pay.point_of_interaction.transaction_data
+      const pay = MercadoPagoPixController.payment();
+      const createPayMnet = await pay.create({
+        body,
+      });
 
-      return {ticket_url, qr_code_base64}
+      const { ticket_url, qr_code_base64 } = createPayMnet.point_of_interaction.transaction_data;
+
+      return { ticket_url, qr_code_base64 };
     } catch (error) {
       throw new Error("error creating payment");
     }

@@ -10,8 +10,7 @@ export default class ModelGetHistory {
 
       const { ID } = getUser;
 
-      const query = `
-                SELECT 
+      const query = `  SELECT 
                     CABELOS.PRECO AS preco,
                     CABELOS.NOME_IMAGE AS nome_cabelo,
                     HISTORICOPAGAMENTO.DATA_TRANSACAO AS data
@@ -33,7 +32,12 @@ export default class ModelGetHistory {
         throw new Error("Nenhum historico encontrado para este usuario.");
       }
 
-      return getHistory;
+      return getHistory.map(char => ({
+        preco: char.preco,
+        nome_cabelo: char.nome_cabelo,
+        data: char.data.split(` `)[0]
+      }))
+      
     } catch (error) {
       throw error;
     } finally {

@@ -1,11 +1,12 @@
+import stripe from "stripe";
 
-import stripe from "stripe"
- export default class StripeApi {
+export default class StripeApi {
   "use strict";
   static #stripeApi = stripe(`sk_test_51QPs1QBSDNyGjeuCk6d2qWug8e0wzorZ8euKtc76mWtjX2FgKrMOyMptQ6hB6SFQXUTZiP7rpbKjdLY1GGuJQxjM00M4JjCJCr`);
   static #informacoesPagamento(valor, itens) {
     const valorParaMultiplicarEmCentavos = 100;
     const valorEmCentavos = valor * valorParaMultiplicarEmCentavos;
+    
     const price_data = {
       price_data: {
         currency: "brl",
@@ -15,25 +16,22 @@ import stripe from "stripe"
       quantity: 1,
     };
 
-    
     return price_data;
   }
 
   static configsRedirecionamentoEpagamneto() {
     return {
       mode: "payment",
-      success_url: "https://www.exemplo.com",
-      cancel_url: "https://www.exemplo.com",
+      success_url: "http://localhost:8080/pagamentoSucesso.html",
+      cancel_url: "http://localhost:8080/falhaPagamento.html",
     };
   }
 
   static async generatePayment(valor, itens) {
     try {
-
       const { url } = await StripeApi.#stripeApi.checkout.sessions.create({
         payment_method_types: ["card"],
-        line_items: [this.#informacoesPagamento(valor, 
-          itens)],
+        line_items: [this.#informacoesPagamento(valor, itens)],
         ...this.configsRedirecionamentoEpagamneto(),
       });
 

@@ -167,9 +167,31 @@ class DeleteAllCortes extends Alert {
         `tente novamente deletar os cabelos.`,
         `error`
       );
-
     });
   }
 }
 
 DeleteAllCortes.btnDeleteEvent();
+
+class GetAgendamentos {
+  static agendamentosUser = document.getElementById("agendamentosUser");
+  static async getAgendamentos() {
+    const getAgendamentos = await fetch(
+      `http://localhost:8080/getAgendamentos`
+    );
+    const get = await getAgendamentos.json();
+    console.log(get.agedamentos);
+
+    get.agedamentos.forEach((char) => {
+      this.agendamentosUser.innerHTML += `
+      <tr> <th scope="row">1</th>
+                <td>${char.user_name}</td>
+                <td>${char.horario}</td>
+                <td>${char.cabelo_nome}</td>
+                
+              </tr>`;
+    });
+  }
+}
+
+GetAgendamentos.getAgendamentos();

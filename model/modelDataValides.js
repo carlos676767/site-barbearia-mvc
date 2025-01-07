@@ -17,8 +17,7 @@ export default class ModelDataValides  {
         throw new Error( "the day and time have already been chosen, try another one." );
       }
 
-    
-
+      
     } catch (error) {
       throw new Error(error);
     }
