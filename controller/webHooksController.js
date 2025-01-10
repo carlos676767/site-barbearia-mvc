@@ -1,19 +1,27 @@
 import cache from "../cache/cache.js";
 import ModelHistoric from "../model/modelHistoric.js";
 
-export default class WebHook {
+
+class GetUserAndSaveHistoric{
   static userGet() {
     const data = cache.get(`objectTranstion`);
     return ({ email, IDCABELO, DATERESERVA, HORA } = data);
   }
 
+  static async saveHistoric(res) {
+    const { email, IDCABELO, DATERESERVA, HORA } = GetUserAndSaveHistoric.userGet();
+    await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA);
+    return res.status(201);
+  }
+}
+
+
+export default class WebHook  extends GetUserAndSaveHistoric {
+
   static async weHookStripe(req, res) {
     const notificationPay = req.body.type;
-
     if (notificationPay === `charge.succeeded`) {
-      const { email, IDCABELO, DATERESERVA, HORA } = WebHook.userGet();
-      await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA);
-      return res.status(201);
+     await WebHook.saveHistoric(res);
     }
   }
 
@@ -22,13 +30,12 @@ export default class WebHook {
     const getSucessPay = await fetch(
       `https://api.mercadopago.com/v1/payments/${idPay}`
     );
-
-    const { status } = getSucessPay.data;
+    
+    const getPayList = await getSucessPay.json();
+    const { status } = getPayList.data;
 
     if (status === "approved") {
-      const { email, IDCABELO, DATERESERVA, HORA } = WebHook.userGet();
-      await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA);
-      return res.status(201);
+      await WebHook.saveHistoric(res);
     }
   }
 }

@@ -14,6 +14,7 @@ export default class ModelHistoric {
         [ID, idCabelo]
       );
       
+      
       await db.exec(`COMMIT`);
 
       await db.exec(`BEGIN TRANSACTION`);

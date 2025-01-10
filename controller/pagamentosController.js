@@ -69,7 +69,7 @@ export default class Payments {
         return url;
       },
     };
-
+    
     const selectOption = optionsValue[pagamentoForma];
 
     if (selectOption) {
