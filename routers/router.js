@@ -5,6 +5,7 @@ import Cortes from "../controller/cabelosController.js";
 import Multer from "../cache/service/multerService.js";
 import Payments from "../controller/pagamentosController.js";
 import WebHook from "../controller/webHooksController.js";
+import OtherThingsWebsiteController from "../controller/otherThingsWebsiteController.js";
 
 const app = api.Router();
 
@@ -22,6 +23,7 @@ app.post(`/webhookStripe`, WebHook.weHookStripe)
 app.get(`/getAgendamentos`, Cortes.getAgedamentos)
 app.get(`/getHistor/:userCode`, Cortes.historyCabelos)
 app.post(`/getAgendamentos`, UserController.getAgendamentos)
+app.post(`/sendEmail`, OtherThingsWebsiteController.sendEmail)
 const single = Multer.multerConfig().single(`file`);
 
 app.post(`/insertCortes`,(req, res, next) => {

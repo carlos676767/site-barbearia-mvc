@@ -29,7 +29,6 @@ class RegisterUser extends ValuesObject {
   
 
       const data = await response.json();
-      alert(JSON.stringify(data))
       
     } catch (error) {
       console.log(error.err);
