@@ -44,13 +44,7 @@ export default class Cortes {
       return res.status(400).send({ err: error.message });
     }
   }
-  static async updateCortes(req, res) {
 
-  }
-
-  static async deleteCortes(req, res) {
-
-  }
 
   static async historyCabelos(req, res) {
     try {

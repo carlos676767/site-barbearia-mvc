@@ -10,9 +10,11 @@ import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import login from "../model/loginUserModel.js";
 import ModelReset from "../model/modelResetPass.js";
 import GetUserModel from "../model/modelGetUser.js";
+import SearchAgendamentos from "../model/modelSarchAgendamentos.js";
+import ValidateFields from "../utils/ValidateFields.js";
 
 export default class UserController {
-"use strict"; 
+  "use strict";
   static async validateAndStoreUserForActivation(req, res) {
     try {
       const { user, email, senha } = req.body;
@@ -44,7 +46,9 @@ export default class UserController {
 
       const tokeen = await InsertUser.insert(userCode);
 
-      return res.status(200).send({ msg: `user successfully registered`, tk: tokeen });
+      return res
+        .status(200)
+        .send({ msg: `user successfully registered`, tk: tokeen });
     } catch (error) {
       return res.status(400).send({ err: error.message });
     }
@@ -90,11 +94,11 @@ export default class UserController {
       const emailVaideExist = await UserExist.emailExist(email);
 
       if (!emailVaideExist) {
-        throw new Error( "The email does not exist in our database, please try another email, thank you.");
+        throw new Error(
+          "The email does not exist in our database, please try another email, thank you."
+        );
       }
-
     } catch (error) {
-
       if (error.message === "The email already exists in our database.") {
         res.status(400).send({ err: true });
         return await Email.sendEmail(
@@ -103,44 +107,59 @@ export default class UserController {
           `http://localhost:8080/viewResetPass.html?=${JwtAsign.jwt({
             emailUser: email,
           })}`
-        ); 
+        );
       }
 
       return res.status(400).send({ err: error.message });
     }
   }
 
-
-
-  static async resetPass(req, res){
+  static async resetPass(req, res) {
     try {
-      const {senha, confirmSenha, token} = req.body
+      const { senha, confirmSenha, token } = req.body;
 
-    
-      
-      SenhaValide.validacoesSenha(senha)
-      SenhaValide.validacoesSenha(confirmSenha)
-      const tokenInEmail = await DecodJsonWebToken.decod(token)
-      
+      SenhaValide.validacoesSenha(senha);
+      SenhaValide.validacoesSenha(confirmSenha);
+      const tokenInEmail = await DecodJsonWebToken.decod(token);
+
       if (!tokenInEmail) {
-        throw new Error("The expiration time to change the password has passed, redo the request."); 
+        throw new Error(
+          "The expiration time to change the password has passed, redo the request."
+        );
       }
-      
-      const {emailUser} = tokenInEmail
-      await ModelReset.resetPassModel(emailUser, senha, confirmSenha)
-      return   res.status(200).send({passAltered: true})
+
+      const { emailUser } = tokenInEmail;
+      await ModelReset.resetPassModel(emailUser, senha, confirmSenha);
+      return res.status(200).send({ passAltered: true });
     } catch (error) {
-      
-      res.status(400).send({err: error.message})
+      res.status(400).send({ err: error.message });
     }
   }
 
-  static async getUsers(req, res){
+  static async getUsers(req, res) {
     try {
-      const gerUser = await GetUserModel.getUser()
-      return res.status(200).send({users:  gerUser})
+      const gerUser = await GetUserModel.getUser();
+      return res.status(200).send({ users: gerUser });
     } catch (error) {
-      res.status(400).send({err: error.message})
+      res.status(400).send({ err: error.message });
+    }
+  }
+
+  
+  static async getAgendamentos(req, res) {
+    try {
+      const { user } = req.body;
+      EmailValide.valideEmail(user);
+      ValidateFields.validateFields(user);
+      
+
+      const getUserAgendamentos = await SearchAgendamentos.getUserAgendamentosFilter(user);
+
+      
+      res.status(200).send({ agendamentos: getUserAgendamentos });
+    } catch (error) {
+      
+      res.status(400).send({ err: error.message });
     }
   }
 }

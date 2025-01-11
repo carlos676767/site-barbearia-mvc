@@ -21,6 +21,7 @@ app.post(`/pagamentos`, Payments.routerPayMent)
 app.post(`/webhookStripe`, WebHook.weHookStripe)
 app.get(`/getAgendamentos`, Cortes.getAgedamentos)
 app.get(`/getHistor/:userCode`, Cortes.historyCabelos)
+app.post(`/getAgendamentos`, UserController.getAgendamentos)
 const single = Multer.multerConfig().single(`file`);
 
 app.post(`/insertCortes`,(req, res, next) => {

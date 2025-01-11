@@ -31,10 +31,7 @@ class ShowUsers extends GetUser {
       <th scope="row">${userId}</th>
       <td>${nome}</td>
       <td>${email}</td>
-      <td>
-          <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Editar</button>
-          <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Excluir</button>
-      </td>
+     
   </tr>`;
     });
   }
@@ -132,10 +129,7 @@ class ViewCabelos extends GetCabelos {
         this.tabelaCabelos.innerHTML += `  <td>${cabelo}</td>
           <td>${preco}</td>
           <td><img src="http://localhost:8080/${url}" alt="${url}" width="50"></td>
-          <td>
-            <button class="btn btn-warning btn-sm btnEditar" data-id="${id}">Editar</button>
-            <button class="btn btn-danger btn-sm btnDeletar" data-id="${id}">Excluir</button>
-          </td>`;
+          `;
       });
     }
   }
@@ -173,25 +167,84 @@ class DeleteAllCortes extends Alert {
 
 DeleteAllCortes.btnDeleteEvent();
 
-class GetAgendamentos {
-  static agendamentosUser = document.getElementById("agendamentosUser");
-  static async getAgendamentos() {
-    const getAgendamentos = await fetch(
-      `http://localhost:8080/getAgendamentos`
-    );
-    const get = await getAgendamentos.json();
-    console.log(get.agedamentos);
-
-    get.agedamentos.forEach((char) => {
-      this.agendamentosUser.innerHTML += `
-      <tr> <th scope="row">1</th>
-                <td>${char.user_name}</td>
-                <td>${char.horario}</td>
-                <td>${char.cabelo_nome}</td>
-                
-              </tr>`;
+class objectSarch {
+  static objectsSeach() {
+    return JSON.stringify({
+      user: document.getElementById(`searchAgendamento`).value,
     });
   }
 }
 
-GetAgendamentos.getAgendamentos();
+class SearchAgendamentos {
+  static async searchAgendamentos() {
+    try {
+      const getAgendamentos = await fetch(
+        `http://localhost:8080/getAgendamentos`,
+        {
+          method: `POST`,
+          body: objectSarch.objectsSeach(),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const user = await getAgendamentos.json();
+      if (getAgendamentos.ok) {
+        return user;
+      }
+
+      return Alert.alert(
+        `${user.err}`,
+        `tente novamente buscar os agendamentos.`,
+        `error`
+      );
+    } catch (error) {
+      return Alert.alert(
+        `Erro ao buscar agendamentos...`,
+        `tente novamente buscar os agendamentos.`,
+        `error`
+      );
+    }
+  }
+}
+
+class ShowAgendamentos extends SearchAgendamentos {
+  static agendamentosUser = document.getElementById("agendamentosUser");
+
+  static async showAgendamentos() {
+    try {
+      const getAgendamentos = await ShowAgendamentos.searchAgendamentos();
+
+      document.getElementById(`ths`).style.display = `block`;
+      getAgendamentos.agendamentos.forEach((agendamento, index) => {
+        const { horario, cabelo_nome, user_name, data } = agendamento;
+
+        this.agendamentosUser.innerHTML += `
+          <tr>
+            <th scope="row">${index + 1}</th>
+            <td>${user_name}</td>
+            <td>${horario}</td>
+            <td>${cabelo_nome}</td>
+            <td>${data}</td>
+          </tr>`;
+      });
+    } catch (error) {
+      document.getElementById(`ths`).style.display = `none`;
+
+      this.agendamentosUser.innerHTML = `<tr><td colspan="5" style="display: flex; justify-content: center; align-items: center; font-weight: bolder;">Erro ao carregar agendamentos</td></tr>`;
+    }
+  }
+}
+
+class btnEvwntSeach extends ShowAgendamentos {
+  static btn = document.getElementById(`getAgendamentos`);
+
+  static btnEvent() {
+    this.btn.addEventListener(`click`, async () => {
+      await this.showAgendamentos();
+    });
+  }
+}
+
+btnEvwntSeach.btnEvent();

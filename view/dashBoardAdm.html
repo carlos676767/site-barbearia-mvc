@@ -81,7 +81,7 @@
                   <th>Nome</th>
                   <th>Preço</th>
                   <th>Imagem</th>
-                  <th>Ações</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -105,25 +105,9 @@
                 <th>#</th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>João Silva</td>
-                <td>joao@email.com</td>
-
-                <td>
-                  <button class="btn btn-warning btn-sm">
-                    <i class="fas fa-edit"></i> Editar
-                  </button>
-                  <button class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash-alt"></i> Excluir
-                  </button>
-                </td>
-              </tr>
-              <!-- Mais registros aqui -->
             </tbody>
           </table>
         </div>
@@ -137,17 +121,18 @@
           <div class="mb-3">
             <label for="searchAgendamento" class="form-label">Buscar Agendamento</label>
             <input type="text" class="form-control" id="searchAgendamento"
-              placeholder="Pesquise por cliente, data ou serviço" />
+              placeholder="Pesquise por email do usuario" />
+              <button type="button" class="btn btn-custom"  id="getAgendamentos">search appointment</button>
           </div>
 
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Cliente</th>
-                <th>Data</th>
-                <th>Serviço</th>
-
+                <th id="ths">#</th>
+                <th id="ths">Cliente</th>
+                <th id="ths">Data</th>
+                <th id="ths">Serviço</th>
+                <th id="ths">Horario</th>
               </tr>
             </thead>
             <tbody id="agendamentosUser">
@@ -155,6 +140,7 @@
               <!-- Mais registros aqui -->
             </tbody>
           </table>
+         
         </div>
       </section>
 
@@ -167,3 +153,4 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
+
