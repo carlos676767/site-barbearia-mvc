@@ -13,7 +13,6 @@ Este é um sistema completo de agendamento para barbearias, permitindo que os cl
 
 ### ⚙ Backend  
 - ![Node.js](https://img.shields.io/badge/Node.js-%23339933.svg?style=for-the-badge&logo=node.js&logoColor=white)  
-- ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)  
 
 ### 🗄 Banco de Dados  
 - ![SQLite](https://img.shields.io/badge/SQLite-%23003B57.svg?style=for-the-badge&logo=sqlite&logoColor=white)  
