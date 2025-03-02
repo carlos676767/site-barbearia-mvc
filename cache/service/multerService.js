@@ -7,7 +7,7 @@ export default class Multer {
   static multerConfig() {
     const storage = this.#multer.diskStorage({
       destination: (req, file, callback) => {
-        const uploadPath = 'C://Users//Administrator//Desktop//SITE BARBEARIA MVC//image';
+        const uploadPath = path.join(__dirname, `image`)
         callback(null, uploadPath);
       },
 

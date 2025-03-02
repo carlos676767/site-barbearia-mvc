@@ -1,4 +1,4 @@
-import Email from "../utils/email";
+import Email from "../utils/email.js";
 import EmailValide from "../utils/emailServiceValide.js";
 import ValidateFields from "../utils/ValidateFields.js";
 
@@ -16,5 +16,4 @@ export default class OtherThingsWebsiteController{
         return res.status(500).json({error: error.message});
        }
     }
-
 }

@@ -10,4 +10,18 @@ export default class ValidateFields {
       }
     }
   }
+
+  static valideNum(num){
+    if (num < 0) {
+      throw new Error("num must be greater than zero");
+      
+    }
+
+    if (typeof num !== "number") {
+      throw new Error("num must be a number");
+    }
+  }
+
+
+
 }

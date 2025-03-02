@@ -7,7 +7,7 @@ export default class login extends UserExist {
   static async login(userEmail, pass) {
     const connect = await Sql.db()
     try {
-      const userGet = await connect.get(`SELECT * FROM USER WHERE EMAIL = ?`, [
+      const userGet = await connect.get(`SELECT * FROM USER WHERE EMAIL = ? LIMIT 1`, [
         userEmail
       ])
 

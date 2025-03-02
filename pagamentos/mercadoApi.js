@@ -1,4 +1,6 @@
 import { MercadoPagoConfig, Payment } from "mercadopago";
+import path from "path";
+import ValidateFields from "../utils/ValidateFields.js";
 export default class MercadoPagoPixController {
   "use strict";
   static payment() {
@@ -11,16 +13,10 @@ export default class MercadoPagoPixController {
   }
 
   static objectWithPaymentInformation(valorItem, nameItens) {
-    const numberNgetaive = 0;
-
-    if (
-      !valorItem ||
-      typeof valorItem !== "number" ||
-      valorItem <= numberNgetaive
-    ) {
-      throw new Error("O valor do item (transaction_amount) é inválido.");
-    }
-
+   
+    ValidateFields.valideNum(valorItem);
+    ValidateFields.validateFields(valorItem)
+    
     return {
       transaction_amount: valorItem,
       description: `${nameItens}`,

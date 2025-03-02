@@ -12,7 +12,7 @@ export default class Payments {
     try {
       const { cabelo, pagamentoForma, dataServico, usuarioToken, hour } =
         req.body;
-        console.log(pagamentoForma);
+
         
 
       ValidateFields.validateFields(req.body);

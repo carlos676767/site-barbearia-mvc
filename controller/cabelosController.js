@@ -13,12 +13,7 @@ export default class Cortes {
       ValidateFields.validateFields(req.body);
       const { nome, preco } = req.body;
       const img = req.file.filename;
-
-      if (preco <= 0) {
-        throw new Error(
-          "the price is a negative value, enter a positive value"
-        );
-      }
+      ValidateFields.valideNum(preco)
 
       await InsertCabeloModel.insertCabelo(nome, preco, img);
       return res.status(200).send({ msg: `caelo successfully registered.` });

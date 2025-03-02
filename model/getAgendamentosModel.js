@@ -24,9 +24,9 @@ JOIN
         throw new Error("there is no booking history");
       }
 
-      return getHistory
+      return getHistory;
     } catch (error) {
-        throw new Error(error);
+      throw new Error(error);
     }
   }
 }

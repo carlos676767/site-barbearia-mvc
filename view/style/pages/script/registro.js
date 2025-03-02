@@ -13,7 +13,16 @@ class ValuesObject {
     });
   }
 }
-
+class Alert {
+  static alert(title, text, icon) {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: icon,
+      confirmButtonText: "OK",
+    });
+  }
+}
 class RegisterUser extends ValuesObject {
   static async registerUserBy() {
 
@@ -28,10 +37,13 @@ class RegisterUser extends ValuesObject {
 
   
 
-      const data = await response.json();
       
+      if (response.ok) {
+        return  Alert.alert(`sucesso`, `foi enviado uma mensagem para seu email`, `sucess`)
+      }
+      return Alert.alert(`sucesso`, `ocorreu um erro tente novamente`, `error`)
     } catch (error) {
-      console.log(error.err);
+      return  Alert.alert(`sucesso`, `ocorreu um erro tente novamente`, `error`)
     }
   }
 }

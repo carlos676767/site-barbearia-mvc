@@ -8,6 +8,7 @@ class GetUserAndSaveHistoric{
     return ({ email, IDCABELO, DATERESERVA, HORA } = data);
   }
 
+ 
   static async saveHistoric(res) {
     const { email, IDCABELO, DATERESERVA, HORA } = GetUserAndSaveHistoric.userGet();
     await ModelHistoric.historcUser(email, IDCABELO, DATERESERVA, HORA);
