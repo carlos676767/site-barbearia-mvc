@@ -42,13 +42,14 @@ export default class Payments {
 
       SetCache.setCache(`objectTranstion`, objectUser);
 
-      if (payMents) {
-        return res.status(200).send({ url: payMents });
+    
+      if (payMents.ticket_url) {
+        return res.status(200).send({
+          url: payMents.ticket_url,
+        });
       }
 
-      return res.status(200).send({
-        url: payMents.ticket_url,
-      });
+      return res.status(200).send({ url: payMents });
     } catch (error) {
       return res.status(400).send({ msg: error.message });
     }
