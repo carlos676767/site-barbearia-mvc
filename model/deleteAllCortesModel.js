@@ -1,6 +1,9 @@
+import path from "path";
 import DeleteItem from "../utils/deleteItem.js";
-import Sql from "./db/db.js"; // Certifique-se de que esse módulo está configurado corretamente.
+import Sql from "./db/db.js"; 
 import fs from "fs/promises";
+import GetAllFilesImageService from "../cache/service/getAllFilesImageService.js";
+
 export default class DeleteAllCortes {
   static async delete() {
     const connecyt = await Sql.db();
@@ -8,14 +11,13 @@ export default class DeleteAllCortes {
       const cortesGet = await connecyt.all(`SELECT * FROM CABELOS`);
       if (cortesGet.length > 0) {
         await connecyt.run("DELETE FROM CABELOS");
-        const files = await fs.readdir(
-          `C://Users//Administrator//Desktop//SITE BARBEARIA MVC//image`
-        );
+        const files = await GetAllFilesImageService.getAllFileImage()
+        const paths = GetAllFilesImageService.getPath()
 
         for (const i of files) {
-          DeleteItem.deleteItem( `C://Users//Administrator//Desktop//SITE BARBEARIA MVC//image/${i}` );
+          DeleteItem.deleteItem( `${paths}${i}` );
         }
-        return true
+
       }
 
       throw new Error("There are no cuts in our database");
