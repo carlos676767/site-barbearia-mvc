@@ -12,6 +12,7 @@ import ModelReset from "../model/modelResetPass.js";
 import GetUserModel from "../model/modelGetUser.js";
 import SearchAgendamentos from "../model/modelSarchAgendamentos.js";
 import ValidateFields from "../utils/ValidateFields.js";
+import serviceToken from "../cache/service/serviceToken.js";
 
 export default class UserController {
   "use strict";
@@ -121,12 +122,7 @@ export default class UserController {
       SenhaValide.validacoesSenha(senha);
       SenhaValide.validacoesSenha(confirmSenha);
       const tokenInEmail = await DecodJsonWebToken.decod(token);
-
-      if (!tokenInEmail) {
-        throw new Error(
-          "The expiration time to change the password has passed, redo the request."
-        );
-      }
+      serviceToken(tokenInEmail)
 
       const { emailUser } = tokenInEmail;
       await ModelReset.resetPassModel(emailUser, senha, confirmSenha);
