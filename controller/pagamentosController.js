@@ -1,3 +1,4 @@
+import OptionPayService from "../cache/service/optionPayService.js";
 import SetCache from "../cache/setCache.js";
 import ModelDataValides from "../model/modelDataValides.js";
 import GetCabeloUser from "../model/modelGetCabelo.js";
@@ -6,6 +7,7 @@ import StripeApi from "../pagamentos/stripeApi.js";
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import ValidateFields from "../utils/ValidateFields.js";
 import ValideHoursService from "../utils/ValideHoursService.js";
+
 
 export default class Payments {
   static async routerPayMent(req, res) {
@@ -21,11 +23,11 @@ export default class Payments {
 
       const { EMAIL } = await DecodJsonWebToken.decod(usuarioToken);
 
-      const getCbaleo = await GetCabeloUser.getCabelo(cabelo);
+      const getCabelo = await GetCabeloUser.getCabelo(cabelo);
 
-      const { PRECO, NOME_IMAGE, ID } = getCbaleo;
+      const { PRECO, NOME_IMAGE, ID } = getCabelo;
 
-      const payMents = await Payments.optionsPayMent(
+      const payMents = await OptionPayService.optionsPayMent(
         Number(PRECO),
         pagamentoForma,
         NOME_IMAGE
@@ -52,30 +54,5 @@ export default class Payments {
     }
   }
 
-  static async optionsPayMent(PRECO, pagamentoForma, nameItem) {
-    const optionsValue = {
-      Pix: async () => {
-        const {ticket_url, qr_code_base64} = await MercadoPagoPixController.generatePayMent(
-          PRECO,
-          nameItem
-        );
 
-        return  ticket_url
-        
-      },
-
-      Cartão: async () => {
-        const { url } = await StripeApi.generatePayment(PRECO, nameItem);
-        return url;
-      },
-    };
-    
-    const selectOption = optionsValue[pagamentoForma];
-
-    if (selectOption) {
-      return await selectOption();
-    }
-
-    throw new Error("select option valid");
-  }
 }

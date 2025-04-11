@@ -39,9 +39,11 @@ class RegisterUser extends ValuesObject {
 
       
       if (response.ok) {
-        return  Alert.alert(`sucesso`, `foi enviado uma mensagem para seu email`, `sucess`)
+        return  Alert.alert(`sucesso`, `foi enviado uma mensagem para seu email`, `success`)
       }
-      return Alert.alert(`sucesso`, `ocorreu um erro tente novamente`, `error`)
+      const userReponse = await response.json();
+      const {msg} = userReponse
+      return Alert.alert(`error`, `${msg}`, `error`)
     } catch (error) {
       return  Alert.alert(`sucesso`, `ocorreu um erro tente novamente`, `error`)
     }
