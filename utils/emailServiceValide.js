@@ -10,6 +10,6 @@ export default class EmailValide {
       throw new Error("please send email");
     };
 
-    return true;
+
   };
 };

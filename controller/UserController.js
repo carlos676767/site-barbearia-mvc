@@ -5,7 +5,7 @@ import EmailValide from "../utils/emailServiceValide.js";
 import JwtAsign from "../utils/auth/jwtAssign.js";
 import CodeRandom from "../utils/randomCodigo.js";
 import SenhaValide from "../utils/senhaValide.js";
-import UserExist from "../utils/userExist.js";
+import UserExist from "../model/modelUserExist.js";
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import login from "../model/loginUserModel.js";
 import ModelReset from "../model/modelResetPass.js";
@@ -141,20 +141,20 @@ export default class UserController {
     }
   }
 
-  
+
   static async getAgendamentos(req, res) {
     try {
       const { user } = req.body;
       EmailValide.valideEmail(user);
       ValidateFields.validateFields(user);
-      
+
 
       const getUserAgendamentos = await SearchAgendamentos.getUserAgendamentosFilter(user);
 
-      
+
       res.status(200).send({ agendamentos: getUserAgendamentos });
     } catch (error) {
-      
+
       res.status(400).send({ err: error.message });
     }
   }

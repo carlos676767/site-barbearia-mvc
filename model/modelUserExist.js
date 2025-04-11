@@ -1,4 +1,4 @@
-import DB from "../model/db/db.js";
+import DB from "./db/db.js";
 
 export default class UserExist {
   static async emailExist(email) {

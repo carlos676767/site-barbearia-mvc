@@ -26,9 +26,7 @@ export default class Email {
         text: text,
       });
 
-    } catch (error) {
-      console.log(error);
-      
+    } catch (error) { 
       throw new Error(`error sending email`);
     };
   };
