@@ -1,3 +1,6 @@
+import MercadoPagoPixController from "../../pagamentos/mercadoApi.js";
+import StripeApi from "../../pagamentos/stripeApi.js";
+
 export default class OptionPayService {
   static async optionsPayMent(PRECO, pagamentoForma, nameItem) {
     const optionsValue = {

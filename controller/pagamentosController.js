@@ -2,8 +2,7 @@ import OptionPayService from "../cache/service/optionPayService.js";
 import SetCache from "../cache/setCache.js";
 import ModelDataValides from "../model/modelDataValides.js";
 import GetCabeloUser from "../model/modelGetCabelo.js";
-import MercadoPagoPixController from "../pagamentos/mercadoApi.js";
-import StripeApi from "../pagamentos/stripeApi.js";
+
 import DecodJsonWebToken from "../utils/auth/jwtDecode.js";
 import ValidateFields from "../utils/ValidateFields.js";
 import ValideHoursService from "../utils/ValideHoursService.js";
