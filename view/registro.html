@@ -1,47 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro - Barbearia</title>
-  <link rel="stylesheet" href="style/registro.css">
-  <link href="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.min.css
-" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="registration-container">
-    <div class="image-section">
-      <img src="https://via.placeholder.com/100x100" alt="Barbearia" />
-      <h1>Bem-vindo à Barbearia</h1>
-      <p>Transformamos estilo em arte. Registre-se para agendar seu horário!</p>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - Barbearia</title>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 min-h-screen flex items-center justify-center px-4">
+
+    <div class="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 fade-in">
+      
+      <!-- Imagem e boas-vindas -->
+      <div class="bg-gradient-to-br from-blue-800 to-blue-900 text-white p-10 flex flex-col justify-center items-center text-center">
+        <img src="../img/supreme.jpeg" alt="Barbearia" class="w-52 h-52 object-cover rounded-full shadow-lg mb-6 border-4 border-white" />
+        <h1 class="text-3xl font-bold mb-2">Bem-vindo à Barbearia</h1>
+        <p class="text-lg text-blue-100">Transformamos estilo em arte. Registre-se para agendar seu horário!</p>
+      </div>
+
+      <!-- Formulário de Registro -->
+      <div class="p-10 md:p-14">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Registrar-se</h2>
+
+        <form>
+          <!-- Nome -->
+          <div class="mb-5">
+            <label for="name" class="block text-sm font-medium text-gray-600 mb-1">Nome</label>
+            <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm">
+              <i class="fas fa-user text-gray-400 mr-3"></i>
+              <input type="text" id="name" placeholder="Seu nome completo" required
+                     class="w-full focus:outline-none text-gray-700 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- E-mail -->
+          <div class="mb-5">
+            <label for="email" class="block text-sm font-medium text-gray-600 mb-1">E-mail</label>
+            <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm">
+              <i class="fas fa-envelope text-gray-400 mr-3"></i>
+              <input type="email" id="email" placeholder="seuemail@email.com" required
+                     class="w-full focus:outline-none text-gray-700 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- Senha -->
+          <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Senha</label>
+            <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm">
+              <i class="fas fa-lock text-gray-400 mr-3"></i>
+              <input type="password" id="password" placeholder="Crie uma senha" required
+                     class="w-full focus:outline-none text-gray-700 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- Botão de Registro -->
+          <button type="submit"
+                  class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold text-lg shadow-md transition duration-300">
+            Registrar
+          </button>
+        </form>
+
+        <!-- Link para Login -->
+        <div class="mt-6 text-sm text-center text-gray-600 space-y-2">
+          <p>
+            Já tem uma conta?
+            <a href="login.html" class="text-blue-600 font-medium hover:underline">Faça login</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <div class="form-section">
-      <h2>Registrar-se</h2>
-      <form>
-        <div class="input-group">
-          <label for="name">Nome</label>
-          <input type="text" id="name" placeholder="Seu nome completo" required />
-        </div>
-        <div class="input-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="seuemail@email.com" required />
-        </div>
-        <div class="input-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" placeholder="Crie uma senha" required />
-        </div>
-       
-        <button class="submit-btn">Registrar</button>
-      </form>
-      <p class="login-link">Já tem uma conta? <a href="login.html">Faça login</a></p>
-    </div>
+
+
+    
+<div id="alerterr" class=" hidden fixed top-6 right-6 z-50 flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-slide-in">
+  <div class="flex items-center justify-center w-12 bg-red-500">
+    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+    </svg>
   </div>
 
- <script type="module" src="style/pages/script/registro.js"></script>
- <script src="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js
-"></script>
-</body>
+  <div class="px-4 py-2 -mx-3">
+    <div class="mx-3">
+      <span class="font-semibold text-red-500 dark:text-red-400">Erro</span>
+      <p class="text-sm text-gray-600 dark:text-gray-200" id="textValue">
+        Seu e-mail já está em uso!
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div id="alertasucess" class="hidden fixed top-6 right-6 z-50 flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-slide-in>">
+  <div class="flex items-center justify-center w-12 bg-emerald-500">
+      <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+      </svg>
+  </div>
+
+  <div class="px-4 py-2 -mx-3">
+      <div class="mx-3">
+          <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+          <p class="text-sm text-gray-600 dark:text-gray-200" id="textSucess">!</p>
+      </div>
+  </div>
+</div>
+
+
+ 
+    <script type="module" src="style/pages/script/registro.js"></script>
+    <script src="../utils/alert.js"></script>
+  </body>
 </html>

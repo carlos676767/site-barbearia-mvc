@@ -1,4 +1,4 @@
-// import Alerts from "../../../../utils/alerts";
+
 
 
 class ValuesObject {
@@ -13,16 +13,7 @@ class ValuesObject {
     });
   }
 }
-class Alert {
-  static alert(title, text, icon) {
-    Swal.fire({
-      title: title,
-      text: text,
-      icon: icon,
-      confirmButtonText: "OK",
-    });
-  }
-}
+
 class RegisterUser extends ValuesObject {
   static async registerUserBy() {
 
@@ -36,16 +27,18 @@ class RegisterUser extends ValuesObject {
       });
 
   
-
+      const userReponse = await response.json();
       
       if (response.ok) {
-        return  Alert.alert(`sucesso`, `foi enviado uma mensagem para seu email`, `success`)
+        const {msg} = userReponse
+        return  Alert(msg, `alertasucess`, `textSucess`)
       }
-      const userReponse = await response.json();
-      const {msg} = userReponse
-      return Alert.alert(`error`, `${msg}`, `error`)
+     
+      
+      const {err} = userReponse
+      return Alert(err, `alerterr`,`textValue`)
     } catch (error) {
-      return  Alert.alert(`sucesso`, `ocorreu um erro tente novamente`, `error`)
+      return  Alert( `ocorreu um erro tente novamente`, `alerterr`, `textValue`)
     }
   }
 }

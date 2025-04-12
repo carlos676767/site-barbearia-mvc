@@ -1,12 +1,5 @@
 
 
-function Alert(title, text, icon) {
-  return Swal.fire({
-    title: title,
-    text: text,
-    icon: icon
-  });
-}
 
 class GetTk {
   static getToken() {
@@ -32,7 +25,7 @@ class AuthSender extends GetTk {
 
 
     } catch (error) {
-      console.error("Erro ao enviar autorização:", error.message);
+      Alert(error.message, `alerterr`)
     }
   }
 }
@@ -69,15 +62,15 @@ class Login extends ObjectsValues {
       });
       if (loginSend.ok) {
        const data = await loginSend.json()
-       Alert(`Login com sucesso.`, `Parabens voce acaba de fazer login`, `success`)
+     
        localStorage.setItem(`token`, data.tk)
        return  location.href ="./agemdamento.html";
       }
 
 
-      return  Alert(`Senha errada.`, `Login esta incorreto tente novamente`, `error`)
+      return  Alert( `Login esta incorreto tente novamente`, `alerterr`)
     } catch (error) {
-    return  Alert(`erro inesperado.`, `Tente novamente , erro.`, `error`)
+    return  Alert(error.message)
     }
   }
 }

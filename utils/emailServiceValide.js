@@ -3,11 +3,11 @@ export default class EmailValide {
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     if (!regex.test(email)) {
-      throw new Error("Invalid email");
+      throw new Error("email invalido");
     };
 
     if (!email) {
-      throw new Error("please send email");
+      throw new Error("preencha um email");
     };
 
 

@@ -34,7 +34,7 @@ export default class UserController {
           userCode: codeUser,
         })}`
       );
-      return res.status(200).send({ msg: `please check your email` });
+      return res.status(200).send({ msg: `verifique sua caixa de e-mail` });
     } catch (error) {
       return res.status(400).send({ err: error.message });
     }

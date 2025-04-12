@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Barbearia</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Barbearia Pro</title>
 
-  <link rel="stylesheet" href="style/login.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-</head>
-<body>
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <div class="login-container">
-    <!-- Seção de Imagem -->
-    <div class="image-section">
-      <img src="../3888777_11894.jpg" alt="Barbearia" />
-      <h1>Bem-vindo de volta!</h1>
-      <p>Entre para acessar sua conta e agendar seus cortes com facilidade.</p>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  
+
+    <link rel="stylesheet" href="style/login.css">
+  </head>
+  <body class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 min-h-screen flex items-center justify-center px-4">
+
+    <div class="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 fade-in">
+      
+      <!-- Imagem e boas-vindas -->
+      <div class="bg-gradient-to-br from-blue-800 to-blue-900 text-white p-10 flex flex-col justify-center items-center text-center">
+        <img src="../img/supreme.jpeg" alt="Barbearia" class="w-52 h-52 object-cover rounded-full shadow-lg mb-6 border-4 border-white" />
+        <h1 class="text-3xl font-bold mb-2">Bem-vindo de volta!</h1>
+        <p class="text-lg text-blue-100">Acesse sua conta e agende seus cortes com estilo e facilidade.</p>
+      </div>
+
+      <!-- Formulário de Login -->
+      <div class="p-10 md:p-14">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Login</h2>
+
+        <form>
+          <!-- E-mail -->
+          <div class="mb-5">
+            <label for="email" class="block text-sm font-medium text-gray-600 mb-1">E-mail</label>
+            <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm">
+              <i class="fas fa-user text-gray-400 mr-3"></i>
+              <input type="email" id="email" placeholder="seuemail@email.com" required
+                     class="w-full focus:outline-none text-gray-700 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- Senha -->
+          <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-600 mb-1">Senha</label>
+            <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm">
+              <i class="fas fa-lock text-gray-400 mr-3"></i>
+              <input type="password" id="password" placeholder="Sua senha" required
+                     class="w-full focus:outline-none text-gray-700 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- Botão -->
+          <button type="submit"
+                  class="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 rounded-lg font-semibold text-lg shadow-md transition duration-300">
+            Entrar
+          </button>
+        </form>
+
+        <!-- Links -->
+        <div class="mt-6 text-sm text-center text-gray-600 space-y-2">
+          <p>
+            Ainda não tem uma conta?
+            <a href="registro.html" class="text-blue-600 font-medium hover:underline">Registre-se</a>
+          </p>
+          <p>
+            Esqueceu sua senha?
+            <a href="digiteEmail.html" class="text-blue-600 font-medium hover:underline">Troque aqui</a>
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- Seção de Formulário -->
-    <div class="form-section">
-      <h2>Login</h2>
-      <form>
-        <div class="input-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" placeholder="seuemail@email.com" required />
-        </div>
-        <div class="input-group">
-          <label for="password">Senha</label>
-          <input type="password" id="password" placeholder="Sua senha" required />
-        </div>
-        <button type="submit" class="submit-btn">Entrar</button>
-      </form>
-      <p class="register-link">Ainda não tem uma conta? <a href="registro.html">Registre-se</a></p>
-      <p class="register-link">Esqueceu sua senha? <a href="digiteEmail.html">Troque aqui</a></p>
+    <!-- SweetAlert (se usar interações JS depois) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
+    <script src="style/pages/script/login.js"></script>
+    <script src="../utils/alert.js"></script>
+  </body>
+</html>
+
+<div id="alerterr" class=" hidden fixed top-6 right-6 z-50 flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-slide-in">
+  <div class="flex items-center justify-center w-12 bg-red-500">
+    <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+    </svg>
+  </div>
+
+  <div class="px-4 py-2 -mx-3">
+    <div class="mx-3">
+      <span class="font-semibold text-red-500 dark:text-red-400">Erro</span>
+      <p class="text-sm text-gray-600 dark:text-gray-200" id="textValue">
+        Seu e-mail já está em uso!
+      </p>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
-  <script src="style/pages/script/login.js"></script>
-</body>
-</html>
+</div>
+
+

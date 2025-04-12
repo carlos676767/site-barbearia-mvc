@@ -1,12 +1,17 @@
-import * as Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js';
+function Alert(text, id, idText) {
+  const div = document.getElementById(id)
+  const textValue = document.getElementById(idText)
 
-export default class AlertService {
-  static showAlert(title, text, icon) {
-    Swal.fire({
-      title: title,
-      text: text,
-      icon: icon,
-      confirmButtonText: 'OK',
-    });
-  }
+
+  textValue.innerText = text
+
+  div.classList.remove(`hidden`)
+
+  setTimeout(() => {
+    div.classList.add(`hidden`)
+  }, 3000);
 }
+
+
+
+
