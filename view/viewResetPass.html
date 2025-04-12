@@ -1,37 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trocar Senha - Barbearia</title>
-  <link rel="stylesheet" href="style/viewResetPass.css">
-  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trocar Senha - Barbearia Pro</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
-  <div class="change-password-container">
-    <div class="image-section">
-      <img src="https://via.placeholder.com/100x100" alt="Barbearia" />
-      <h1>Redefina sua Senha</h1>
-      <p>Informe sua nova senha para concluir a troca.</p>
+<body class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 min-h-screen flex items-center justify-center px-4 font-[Poppins]">
+
+  <div class="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 animate-fade-in-up">
+    
+    <!-- Lado esquerdo com imagem e mensagem -->
+    <div class="bg-gradient-to-br from-blue-800 to-blue-900 text-white p-10 flex flex-col justify-center items-center text-center">
+      <img src="../img/supreme.jpeg" alt="Barbearia" class="w-52 h-52 object-cover rounded-full shadow-lg mb-6 border-4 border-white animate-pulse" />
+      <h1 class="text-3xl font-bold mb-2">Redefina sua Senha</h1>
+      <p class="text-lg text-blue-100">Crie uma nova senha forte para continuar usando o sistema com segurança.</p>
     </div>
-    <div class="form-section">
-      <h2>Nova Senha</h2>
-      <form id="changePasswordForm">
-        <div class="input-group">
-          <label for="newPassword">Nova Senha</label>
-          <input type="password" id="newPassword" placeholder="Sua nova senha" required />
+
+    <!-- Lado direito com formulário -->
+    <div class="p-10 md:p-14 bg-white">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8">Nova Senha</h2>
+
+      <form id="changePasswordForm" class="space-y-6">
+        <!-- Nova Senha -->
+        <div>
+          <label for="newPassword" class="block text-sm font-medium text-gray-600 mb-1">Nova Senha</label>
+          <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-500">
+            <i class="fas fa-lock text-gray-400 mr-3"></i>
+            <input type="password" id="newPassword" placeholder="Sua nova senha"
+                   class="w-full focus:outline-none text-gray-700 placeholder-gray-400" required />
+          </div>
         </div>
-        <div class="input-group">
-          <label for="confirmPassword">Confirmar Senha</label>
-          <input type="password" id="confirmPassword" placeholder="Confirme sua nova senha" required />
+
+        <!-- Confirmar Senha -->
+        <div>
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-600 mb-1">Confirmar Senha</label>
+          <div class="flex items-center border border-gray-300 rounded-lg px-4 py-2 bg-white shadow-sm focus-within:ring-2 focus-within:ring-blue-500">
+            <i class="fas fa-check-double text-gray-400 mr-3"></i>
+            <input type="password" id="confirmPassword" placeholder="Confirme sua nova senha"
+                   class="w-full focus:outline-none text-gray-700 placeholder-gray-400" required />
+          </div>
         </div>
-        <button class="submit-btn" type="submit">Alterar Senha</button>
+
+        <!-- Botão -->
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-800 hover:to-indigo-900 text-white py-3 rounded-lg font-semibold text-lg shadow-md transition duration-300 transform hover:scale-105">
+          Alterar Senha
+        </button>
       </form>
-      <p class="login-link">Lembrou sua senha? <a href="login.html">Faça login</a></p>
+
+      <!-- Link de retorno -->
+      <div class="mt-6 text-sm text-center text-gray-600">
+        <p>
+          Lembrou sua senha?
+          <a href="login.html" class="text-blue-600 font-medium hover:underline">Voltar ao login</a>
+        </p>
+      </div>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
+
+
+  <div id="alerterr" class=" hidden fixed top-6 right-6 z-50 flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-slide-in">
+    <div class="flex items-center justify-center w-12 bg-red-500">
+      <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+      </svg>
+    </div>
+  
+    <div class="px-4 py-2 -mx-3">
+      <div class="mx-3">
+        <span class="font-semibold text-red-500 dark:text-red-400">Erro</span>
+        <p class="text-sm text-gray-600 dark:text-gray-200" id="textValue">
+          Seu e-mail já está em uso!
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="alertasucess" class="hidden fixed top-6 right-6 z-50 flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 animate-slide-in>">
+    <div class="flex items-center justify-center w-12 bg-emerald-500">
+        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+        </svg>
+    </div>
+  
+    <div class="px-4 py-2 -mx-3">
+        <div class="mx-3">
+            <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+            <p class="text-sm text-gray-600 dark:text-gray-200" id="textSucess">!</p>
+        </div>
+    </div>
+  </div>
+  
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="style/pages/script/viewResetPass.js" type="module"></script>
+  <script src="../utils/alert.js"></script>
 </body>
 </html>

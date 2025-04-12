@@ -3,27 +3,11 @@ class GetToken {
     return location.href.split(`=`)[1]
   }
 }
-
-class Alert {
-    static alert(title, text, icon) {
-      return Swal.fire({
-        title: title,
-        text: text,
-        icon: icon,
-      });
-    }
-  }
-
-
 class InputValues extends GetToken {
   static newPassword = document.getElementById(`newPassword`);
   static confirmPassword = document.getElementById(`confirmPassword`);
   static getInput() {
-    alert(JSON.stringify({
-      senha: this.newPassword.value.trim(),
-      confirmSenha: this.confirmPassword.value.trim(),
-      token: this.getToken()
-    }))
+   
     return JSON.stringify({
       senha: this.newPassword.value.trim(),
       confirmSenha: this.confirmPassword.value.trim(),
@@ -44,11 +28,12 @@ class ResetPass extends InputValues {
       });
 
       if (updatePass.ok) {
-        return Alert.alert(`senha trocada com sucesso.`, `sua senha foi trocada com sucesso.`, `success`)
+        return    Alert(`senha alterada com sucesso.`,`alertasucess`, `textSucess`)
       }
       
+      return Alert(`ocorreu um erro tente novamente.`, `alerterr`,`textValue`)
     } catch (error) {
-        return Alert.alert(`Erro ao trocar a senha.`, error, `error`)
+      return Alert(error.message, `alerterr`,`textValue`)
     }
   }
 }

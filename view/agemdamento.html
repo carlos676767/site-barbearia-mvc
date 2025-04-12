@@ -4,132 +4,220 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barbearia Supreme - Agendamento</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style/agendamento.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Barbearia Supreme</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#services"><i class="fa-solid fa-concierge-bell"></i> Serviços</a></li>
-          <li class="nav-item"><a class="nav-link" href="historicoPgamento.html"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a></li>
-          <li class="nav-item"><a class="nav-link" href="fq.html"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
-          <li class="nav-item"><a class="nav-link" href="contato.html"><i class="fa-solid fa-envelope"></i> Contato</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="container">
-      <h1>Transforme Seu Estilo</h1>
-      <p class="confianca">Confiança, qualidade e tradição em cada corte de cabelo.</p>
-      <a href="#services" class="btn btn-lg shadow">Descubra Nossos Serviços</a>
-    </div>
-  </header>
 
-  <!-- Services Section -->
-  <section id="services" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-5">Escolha Seu Serviço</h2>
-      <div class="row g-4 justify-content-center" id="div-corte">
-    
-     
+  <nav x-data="{ isOpen: false }" class="relative bg-white shadow dark:bg-gray-800">
+    <div class="container px-6 py-4 mx-auto">
+        <div class="lg:flex lg:items-center lg:justify-between">
+            <div class="flex items-center justify-between">
+                <a style="font-size: 20px; color: white;" href="#" class="w-auto h-6 sm:h-7">
+                  Supreme
+                </a>
 
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden">
+                    <button x-cloak @click="isOpen = !isOpen" type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                        <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                        </svg>
+                
+                        <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-        
-  </section>
 
+            <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+            <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+                <div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+                    <a href="#services" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Serviços</a>
+                    <a href="historicoPgamento.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Histórico</a>
+                    <a href="fq.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Faq</a>
+                    <a href="contato.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contato</a>
+                </div>
+
+                <div class="flex items-center mt-4 lg:mt-0">
+                    <button class="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                        <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" class="object-cover w-full h-full" alt="avatar">
+                        </div>
+
+                        <h3 class="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">User</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+
+<!-- Hero Section -->
+<section class="bg-white dark:bg-gray-900">
+  <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+    <div class="mr-auto place-self-center lg:col-span-7">
+      <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+        Estilo e cuidado que transformam
+      </h1>
+      <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+        Na nossa barbearia, cada corte é uma experiência. Agende online, escolha seu estilo e viva o melhor atendimento.
+      </p>
+      <a href="#agendamento" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+        Agendar Horário
+        <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+      <a href="#contato" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+        Falar com a Barbearia
+      </a>
+    </div>
+    <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+      <img src="../img/supreme.png" alt="mockup">
+    </div>
+  </div>
+</section>
+<section id="contact" class="py-12 bg-gray-100 dark:bg-gray-900">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">Agende Seu Atendimento</h2>
+    <form id="booking-form" class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+      
+      <!-- Data -->
+      <div>
+        <label for="date" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Data</label>
+        <input type="date" id="date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" required>
+      </div>
+      
+      <!-- Horário -->
+      <div>
+        <label for="time" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Horário</label>
+        <input type="time" id="time" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" required min="09:00" max="19:00">
+      </div>
+      
+      <!-- Serviço -->
+      <div>
+        <label for="service" class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Serviço</label>
+        <select id="service" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white" required>
+          <option selected disabled>Escolha um serviço</option>
+          <option value="corte-classico">Corte Clássico</option>
+          <!-- Adicione mais opções conforme necessário -->
+        </select>
+      </div>
+      
+      <!-- Forma de Pagamento -->
+      <div>
+        <span class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Forma de Pagamento</span>
+        <div class="flex items-center space-x-6">
+          <label class="inline-flex items-center">
+            <input type="radio" name="payment" value="Pix" class="form-radio text-blue-600 dark:text-blue-400" required>
+            <span class="ml-2 text-gray-700 dark:text-gray-200"><i class="fas fa-qrcode mr-1"></i> Pix</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="radio" name="payment" value="Cartão" class="form-radio text-blue-600 dark:text-blue-400" required>
+            <span class="ml-2 text-gray-700 dark:text-gray-200"><i class="fas fa-credit-card mr-1"></i> Cartão</span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Botão de Agendamento -->
+      <div class="md:col-span-2 text-center">
+        <button type="submit" id="agendar" class="mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <i class="fas fa-calendar-check mr-2"></i> Agendar
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</section>
   <!-- Contato Section -->
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5">Agende Seu Atendimento</h2>
-      <form id="booking-form" class="row g-4 justify-content-center">
-        <div class="col-md-6">
-          <label for="date" class="form-label">Data</label>
-          <input type="date" class="form-control" id="date" required>
-        </div>
-        <div class="col-md-6">
-          <label for="date" class="form-label">Horario</label>
-          <input type="time" class="form-control" id="time" required min="09:00" max="19:00">
-
-        </div>
-        <div class="col-md-6">
-          <label for="service" class="form-label">Serviço</label>
-          <select id="service" class="form-select" required>
-            <option selected disabled>Escolha um serviço</option>
-            <option value="" >Corte Clássico</option>
-          
-          </select>
-          
-        </div>
+ 
   
-        <!-- Opções de pagamento -->
-        <div class="col-md-6">
-          <label class="form-label">Forma de Pagamento</label>
-          <div class="d-flex justify-content-between">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="payment" id="pix" value="Pix" required>
-              <label class="form-check-label" for="pix">
-                <i class="fa-solid fa-qrcode"></i> Pix
-              </label>
+
+ 
+  <section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-12 mx-auto">
+        <div>
+            <p class="font-medium text-blue-500 dark:text-blue-400">Contact us</p>
+
+            <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
+
+            <p class="mt-3 text-gray-500 dark:text-gray-400">Our friendly team would love to hear from you.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-1">
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </span>
+
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Email</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Our friendly team is here to help.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">hello@merakiui.com</p>
+                </div>
+
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                    </span>
+                    
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Office</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Come say hello at our office HQ.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">100 Smith Street Collingwood VIC 3066 AU</p>
+                </div>
+
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                    </span>
+                    
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Phone</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Mon-Fri from 8am to 5pm.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">+1 (555) 000-0000</p>
+                </div>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="payment" id="card" value="Cartão" required>
-              <label class="form-check-label" for="card">
-                <i class="fa-solid fa-credit-card"></i> Cartão
-              </label>
+
+            <div class="overflow-hidden rounded-lg lg:col-span-2 h-96 lg:h-auto">
+                <iframe width="100%" height="100%" frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
             </div>
-          </div>
         </div>
-  
-        <div class="col-md-6 text-center">
-          <button class="btn btn-primary btn-lg shadow" id="agendar">Agendar</button>
-        </div>
-      </form>
     </div>
-  </section>
-  
-
-  <!-- Map Section -->
-  <section class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Encontre-nos</h2>
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345085257!2d-122.40138278468141!3d37.78583497975826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f14707b3%3A0xa4c116f3e731f815!2sBarber%20Shop!5e0!3m2!1sen!2sus!4v1689847619324"
-          width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p class="mb-0">&copy; 2024 Barbearia Supreme. Todos os direitos reservados.</p>
-  </footer>
+</section>
   <script src="style/pages/script/agendamento.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
   <script src="
   https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js
   "></script>

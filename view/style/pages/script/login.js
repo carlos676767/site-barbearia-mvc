@@ -25,7 +25,7 @@ class AuthSender extends GetTk {
 
 
     } catch (error) {
-      Alert(error.message, `alerterr`)
+      Alert(error.message, `alerterr`, `textValue`)
     }
   }
 }
