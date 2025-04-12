@@ -4,57 +4,157 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Histórico de Pagamento - Barbearia Supreme</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="style/historico.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Barbearia Supreme</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="agemdamento.html"><i class="fa-solid fa-house"></i> Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html"><i class="fa-solid fa-concierge-bell"></i> Serviços</a></li>
-          <li class="nav-item"><a class="nav-link" href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> Histórico</a></li>
-          <li class="nav-item"><a class="nav-link" href="faq.html"><i class="fa-solid fa-circle-question"></i> FAQ</a></li>
-        </ul>
-      </div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<body class="bg-gray-50">
+
+  <nav x-data="{ isOpen: false }" class="relative bg-blue-900 shadow dark:bg-gray-800">
+    <div class="container px-6 py-4 mx-auto">
+        <div class="lg:flex lg:items-center lg:justify-between">
+            <div class="flex items-center justify-between">
+                <a style="font-size: 20px; color: white;" href="#" class="w-auto h-6 sm:h-7 font-semibold">
+                  Supreme
+                </a>
+
+                <!-- Mobile menu button -->
+                <div class="flex lg:hidden">
+                    <button x-cloak @click="isOpen = !isOpen" type="button" class="text-white hover:text-gray-300 focus:outline-none" aria-label="toggle menu">
+                        <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                        </svg>
+                
+                        <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+            <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+                <div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+                    <a href="#services" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Serviços</a>
+                    <a href="historicoPgamento.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Histórico</a>
+                    <a href="fq.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Faq</a>
+                    <a href="contato.html" class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Contato</a>
+                </div>
+
+                <div class="flex items-center mt-4 lg:mt-0">
+                    <button class="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none" aria-label="show notifications">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                        <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" class="object-cover w-full h-full" alt="avatar">
+                        </div>
+
+                        <h3 class="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">User</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
+</nav>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 
   <!-- Histórico de Pagamento -->
-  <div class="container">
-    <h2 class="page-title">Histórico de Pagamento</h2>
+  <div class="container mx-auto p-6">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-6">Histórico de Pagamento</h2>
 
     <!-- Filtro de Pagamentos -->
-  
+    <div class="mb-4">
+      <label for="filter" class="text-gray-700">Filtrar por data:</label>
+      <input id="filter" type="date" class="border rounded-md p-2 mt-1 w-full md:w-1/4" />
+    </div>
 
     <!-- Tabela de Pagamentos -->
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Serviço</th>
-          <th>Valor</th>
-          <th>Status</th>
-         
-        </tr>
-      </thead>
-      <tbody>
-     
-       
-      </tbody> 
-    </table>
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+      <table class="min-w-full table-auto text-sm">
+        <thead class="bg-blue-900 text-white">
+          <tr>
+            <th class="px-4 py-2">Data</th>
+            <th class="px-4 py-2">Serviço</th>
+            <th class="px-4 py-2">Valor</th>
+            <th class="px-4 py-2">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+          <!-- Adicione mais linhas conforme necessário -->
+        </tbody>
+      </table>
+    </div>
 
   </div>
+
+  <section class="bg-white dark:bg-gray-900">
+    <div class="container px-6 py-12 mx-auto">
+        <div>
+            <p class="font-medium text-blue-500 dark:text-blue-400">Contact us</p>
+
+            <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Get in touch</h1>
+
+            <p class="mt-3 text-gray-500 dark:text-gray-400">Our friendly team would love to hear from you.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3">
+            <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-1">
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                        </svg>
+                    </span>
+
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Email</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Our friendly team is here to help.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">hello@merakiui.com</p>
+                </div>
+
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                        </svg>
+                    </span>
+                    
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Office</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Come say hello at our office HQ.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">100 Smith Street Collingwood VIC 3066 AU</p>
+                </div>
+
+                <div>
+                    <span class="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                        </svg>
+                    </span>
+                    
+                    <h2 class="mt-4 text-base font-medium text-gray-800 dark:text-white">Phone</h2>
+                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Mon-Fri from 8am to 5pm.</p>
+                    <p class="mt-2 text-sm text-blue-500 dark:text-blue-400">+1 (555) 000-0000</p>
+                </div>
+            </div>
+
+            <div class="overflow-hidden rounded-lg lg:col-span-2 h-96 lg:h-auto">
+                <iframe width="100%" height="100%" frameborder="0" title="map" marginheight="0" marginwidth="0" scrolling="no" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
   <script src="style/pages/script/historicoPagamento.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.2/dist/sweetalert2.all.min.js"></script>
+ 
 </body>
 </html>

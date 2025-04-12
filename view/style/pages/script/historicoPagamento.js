@@ -22,6 +22,7 @@ class GetHistory extends GetTk {
       const itens = await getItens.json();
       console.log(itens);
       
+      
       const {err} = itens
 
       if (err === `"the expiration time has passed, try again, you have a time of 1 hour" `) {
@@ -44,7 +45,8 @@ class ViewItens extends  GetHistory {
 
     static async getItem(){
         const item = await GetHistory.getHistory()
-        item.historcUser.forEach((char) => {
+        if (!item.err) {
+          item.historcUser.forEach((char) => {
             ViewItens.tbdiy.innerHTML += `
             <tr>
              <td>${char.data}</td>
@@ -55,6 +57,8 @@ class ViewItens extends  GetHistory {
             </tr>
             `
         });
+        }
+       
     }
 }
 
